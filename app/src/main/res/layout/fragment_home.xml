@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.HomeFragment">
+
+    <!--Home title -->
+    <TextView
+        android:id="@+id/homeTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home_title"
+        android:fontFamily="@font/poppins_bold"
+        android:textColor="@color/text_primary"
+        android:textSize="17sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"/>
+
+    <!--Search field -->
+    <RelativeLayout
+        android:id="@+id/search_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/homeTitleTextView"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp">
+
+        <!--Search edit text -->
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/search"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_centerVertical="true"
+            android:paddingStart="12dp"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:background="@drawable/search_bar"
+            android:imeOptions="actionSearch"
+            tools:ignore="RtlSymmetry" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/searchEditText"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/search_button_description"
+            android:src="@drawable/ic_search_icon"
+            android:backgroundTint="@color/screen"/>
+
+    </RelativeLayout>
+
+    <!--Content field -->
+    <RelativeLayout
+        android:id="@+id/home_content_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_field"
+        android:layout_marginTop="30dp">
+        <!--Booking services Text -->
+        <TextView
+            android:id="@+id/booking_services_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/booking_services"
+            android:textSize="16sp"
+            android:textColor="@color/text_primary"
+            android:fontFamily="@font/poppins_medium"
+            android:lineSpacingExtra="-2sp"
+            android:layout_marginStart="16dp"/>
+
+        <!--Booking services buttons field -->
+        <LinearLayout
+            android:id="@+id/booking_services_buttons_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/booking_services_text"
+            android:layout_marginTop="20dp">
+
+            <!--Trip_service_field -->
+            <RelativeLayout
+                android:id="@+id/trip_service_field"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/trip_service_image_button"
+                    android:contentDescription="@string/booking_services"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_trips_service"
+                    android:background="@android:color/transparent"/>
+
+                <TextView
+                    android:id="@+id/trips_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/trip_service_image_button"
+                    android:text="@string/trips_booking"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="@font/poppins_medium"
+                    android:layout_centerHorizontal="true"/>
+
+            </RelativeLayout>
+
+            <!--Hotel service field -->
+            <RelativeLayout
+                android:id="@+id/hotel_service_field"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/hotel_service_image_button"
+                    android:contentDescription="@string/booking_services"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_hotel_service"
+                    android:background="@android:color/transparent"/>
+
+                <TextView
+                    android:id="@+id/hotel_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/hotel_service_image_button"
+                    android:text="@string/hotel"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="@font/poppins_medium"
+                    android:layout_centerHorizontal="true"/>
+
+            </RelativeLayout>
+
+            <!--Transport service field -->
+            <RelativeLayout
+                android:id="@+id/transport_service_field"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/transport_service_image_button"
+                    android:contentDescription="@string/booking_services"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_transport_service"
+                    android:background="@android:color/transparent"/>
+
+                <TextView
+                    android:id="@+id/home_transport_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/transport_service_image_button"
+                    android:text="@string/transport_text"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="@font/poppins_medium"
+                    android:layout_centerHorizontal="true"/>
+
+            </RelativeLayout>
+
+            <!--Events service field -->
+            <RelativeLayout
+                android:id="@+id/events_service_field"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/events_service_image_button"
+                    android:contentDescription="@string/booking_services"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_events_service"
+                    android:background="@android:color/transparent"/>
+
+                <TextView
+                    android:id="@+id/events_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/events_service_image_button"
+                    android:text="@string/events"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="@font/poppins_medium"
+                    android:layout_centerHorizontal="true"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

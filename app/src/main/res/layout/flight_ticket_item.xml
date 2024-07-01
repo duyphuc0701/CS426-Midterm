@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_marginTop="30dp"
+    android:layout_marginBottom="30dp"
+    android:background="@color/white">
+
+    <!--Ticket locations field -->
+    <RelativeLayout
+        android:id="@+id/ticket_locations_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true">
+
+        <!--From field -->
+        <RelativeLayout
+            android:id="@+id/ticket_from_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/from_location_shorthand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/new_york_shorthand"
+                android:textSize="10sp"
+                android:textColor="@color/green_700"
+                android:fontFamily="@font/poppins_medium"
+                android:lineSpacingExtra="1sp"
+                android:translationY="-0.5sp"
+                android:gravity="top" />
+
+            <TextView
+                android:id="@+id/from_location_full"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/from_location_shorthand"
+                android:text="@string/new_york_full"
+                android:textSize="16sp"
+                android:textColor="@color/text_primary"
+                android:lineSpacingExtra="-2sp"
+                android:gravity="top" />
+
+        </RelativeLayout>
+
+        <!--Loading image -->
+        <View
+            android:id="@+id/ticket_loading_icon"
+            android:layout_width="130dp"
+            android:layout_height="24dp"
+            android:layout_toEndOf="@id/ticket_from_field"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/ic_loading"/>
+
+        <!--To field -->
+        <RelativeLayout
+            android:id="@+id/ticket_to_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@+id/ticket_loading_icon">
+
+            <TextView
+                android:id="@+id/to_location_shorthand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/london_shorthand"
+                android:textSize="10sp"
+                android:textColor="@color/green_700"
+                android:fontFamily="@font/poppins_medium"
+                android:lineSpacingExtra="1sp"
+                android:translationY="-0.5sp"
+                android:gravity="top" />
+
+            <TextView
+                android:id="@+id/to_location_full"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/to_location_shorthand"
+                android:text="@string/london_full"
+                android:textSize="16sp"
+                android:textColor="@color/text_primary"
+                android:lineSpacingExtra="-2sp"
+                android:gravity="top" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <!--Dotted divider line -->
+    <View
+        android:id="@+id/ticket_divider"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@+id/ticket_locations_field"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/flight_ticket_divider" />
+
+    <!--Flight information field-->
+    <RelativeLayout
+        android:id="@+id/ticket_info_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ticket_divider"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true">
+
+        <!--Date field-->
+        <RelativeLayout
+            android:id="@+id/ticket_date_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/ticket_date_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/date_text"
+                android:textSize="10sp"
+                android:textColor="@color/green_700"
+                android:lineSpacingExtra="1sp"
+                android:translationY="-0.5sp"
+                android:gravity="top" />
+
+            <TextView
+                android:id="@+id/ticket_date_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ticket_date_text"
+                android:text="@string/june_02"
+                android:textSize="16sp"
+                android:textColor="@color/text_primary"
+                android:lineSpacingExtra="-2sp"
+                android:gravity="top" />
+        </RelativeLayout>
+
+        <!--Time field-->
+        <RelativeLayout
+            android:id="@+id/ticket_time_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/ticket_date_field"
+            android:layout_marginStart="40dp">
+
+            <TextView
+                android:id="@+id/ticket_time_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/departure_text"
+                android:textSize="10sp"
+                android:textColor="@color/green_700"
+                android:lineSpacingExtra="1sp"
+                android:translationY="-0.5sp"
+                android:gravity="top" />
+
+            <TextView
+                android:id="@+id/ticket_time_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ticket_time_text"
+                android:text="@string/nine_am"
+                android:textSize="16sp"
+                android:textColor="@color/text_primary"
+                android:lineSpacingExtra="-2sp"
+                android:gravity="top" />
+        </RelativeLayout>
+
+        <!--Price field-->
+        <RelativeLayout
+            android:id="@+id/ticket_price_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/ticket_time_field"
+            android:layout_marginStart="40dp">
+
+            <TextView
+                android:id="@+id/ticket_price_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/price_text"
+                android:textSize="10sp"
+                android:textColor="@color/green_700"
+                android:lineSpacingExtra="1sp"
+                android:translationY="-0.5sp"
+                android:gravity="top" />
+
+            <TextView
+                android:id="@+id/ticket_price_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ticket_price_text"
+                android:text="@string/fifty_dollars"
+                android:textSize="16sp"
+                android:textColor="@color/text_primary"
+                android:lineSpacingExtra="-2sp"
+                android:gravity="top" />
+        </RelativeLayout>
+
+        <!--Flight number field-->
+        <RelativeLayout
+            android:id="@+id/ticket_flightNumber_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/ticket_price_field"
+            android:layout_marginStart="40dp">
+
+            <TextView
+                android:id="@+id/ticket_flightNumber_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/number_text"
+                android:textSize="10sp"
+                android:textColor="@color/green_700"
+                android:lineSpacingExtra="1sp"
+                android:translationY="-0.5sp"
+                android:gravity="top" />
+
+            <TextView
+                android:id="@+id/ticket_flightNumber_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ticket_flightNumber_text"
+                android:text="@string/nl_41"
+                android:textSize="16sp"
+                android:textColor="@color/text_primary"
+                android:lineSpacingExtra="-2sp"
+                android:gravity="top" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

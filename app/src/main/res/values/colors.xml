@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="green_700">#01635D</color>
+    <color name="green_500">#089083</color>
+    <color name="green_50">#B7DFDB</color>
+    <color name="peach_300">#FEA36B</color>
+    <color name="peach_50">#FFDDA2</color>
+    <color name="alerts_links">#3EAEFF</color>
+    <color name="alerts_success">#09C933</color>
+    <color name="alerts_warning">#FF941C</color>
+    <color name="alerts_error">#FF3636</color>
+    <color name="text_primary">#050505</color>
+    <color name="text_secondary">#727272</color>
+    <color name="screen">#FAFAFA</color>
+</resources>
