@@ -31,7 +31,6 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:contentDescription="@string/booking_screen_title"
                 android:src="@drawable/image_hotel"/>
 
@@ -39,7 +38,7 @@
                 android:id="@+id/transportBookingImageView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:contentDescription="@string/booking_screen_title"
                 android:clickable="true"
                 android:focusable="true"
@@ -48,13 +47,14 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:contentDescription="@string/trips_booking"
                 android:src="@drawable/image_trips"/>
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:contentDescription="@string/booking_screen_title"
                 android:src="@drawable/image_events"/>
 

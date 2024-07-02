@@ -53,9 +53,7 @@ public class FlightsDetailsFragment extends Fragment {
         binding.flightsDetailsBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentActivity activity = requireActivity();
-                activity.getSupportFragmentManager().popBackStack();
-                activity.finish();
+                requireActivity().finish();
             }
         });
 

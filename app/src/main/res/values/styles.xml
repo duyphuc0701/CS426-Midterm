@@ -11,4 +11,10 @@
         <item name="colorControlActivated">@color/green_500</item>
         <item name="colorControlHighlight">@color/green_500</item>
     </style>
+
+    <style name="citySpinnerItem">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
 </resources>

@@ -5,6 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
     tools:context=".TransportBookingActivity">
 
     <!--Top App Bar -->
@@ -79,16 +81,11 @@
                             android:lineSpacingExtra="1sp"
                             android:translationY="-0.5sp" />
 
-                        <TextView
-                            android:id="@+id/from_location"
+                        <Spinner
+                            android:id="@+id/from_spinner"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/from_text"
-                            android:fontFamily="@font/poppins_medium"
-                            android:lineSpacingExtra="-2sp"
-                            android:text="@string/new_york"
-                            android:textColor="@color/text_primary"
-                            android:textSize="16sp" />
+                            android:layout_below="@+id/from_text" />
 
                     </RelativeLayout>
 
@@ -112,22 +109,17 @@
                             android:lineSpacingExtra="1sp"
                             android:translationY="-0.5sp" />
 
-                        <TextView
-                            android:id="@+id/to_location"
+                        <Spinner
+                            android:id="@+id/to_spinner"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/to_text"
-                            android:fontFamily="@font/poppins_medium"
-                            android:lineSpacingExtra="-2sp"
-                            android:text="@string/london"
-                            android:textColor="@color/text_primary"
-                            android:textSize="16sp" />
+                            android:layout_below="@+id/to_text" />
 
                     </RelativeLayout>
 
                     <!--Orange Switch button -->
                     <ImageButton
-                        android:id="@+id/button"
+                        android:id="@+id/locations_switch_button"
                         android:contentDescription="@string/button_switch_from_to_flight"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
@@ -172,12 +164,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/depature_text"
+                            android:focusable="true"
                             android:text="@string/June_02_2022"
                             android:textSize="16sp"
                             android:textColor="@color/text_primary"
                             android:fontFamily="@font/poppins_medium"
                             android:lineSpacingExtra="-2sp"
-                            android:gravity="center" />
+                            android:gravity="center"
+                            android:clickable="true"/>
 
                     </RelativeLayout>
 

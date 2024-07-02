@@ -39,6 +39,14 @@ public class FlightsFilterFragment extends Fragment {
             }
         });
 
+        binding.filterDoneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: Change this code to make it filter
+                requireActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
+
         return rootView;
     }
 }
