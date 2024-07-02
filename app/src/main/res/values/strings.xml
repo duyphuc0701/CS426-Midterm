@@ -99,4 +99,15 @@
     <string name="continue_text">Continue</string>
     <string name="seat_status_info">Seat status info</string>
     <string name="seat_row_numbers">Seat row numbers</string>
+    <string name="boarding_pass">Boarding Pass</string>
+    <string name="ticket_divider">Ticket divider</string>
+    <string name="boarding_pass_plane">Boarding pass plane</string>
+    <string name="british_air_nl_41">British Airways Flight NL-41</string>
+    <string name="passenger">Passenger</string>
+    <string name="one_adult">1 Adult</string>
+    <string name="ticket">Ticket</string>
+    <string name="nl_82_1">NL82-1</string>
+    <string name="seat">Seat</string>
+    <string name="two_a">2A</string>
+    <string name="download_ticket">Download ticket</string>
 </resources>

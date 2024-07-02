@@ -34,23 +34,26 @@
             android:textAppearance="@style/title" />
     </RelativeLayout>
 
+    <!--Content field -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/transportBookingNavBar"
         android:layout_above="@+id/transportBookingBottomNavigation">
         <!--Content field -->
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/transportBookingContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="20dp">
 
             <!--Flight Information field -->
             <RelativeLayout
                 android:id="@+id/flight_info_field"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true">
+                android:layout_gravity="center_horizontal">
                 <!--From-To-Button field -->
                 <RelativeLayout
                     android:id="@+id/from_to_locations"
@@ -142,7 +145,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/from_to_locations"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp">
 
                     <!--Departure Date field -->
@@ -150,7 +152,7 @@
                         android:id="@+id/departure_field"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/depature_to_field">
+                        android:background="@drawable/departure_to_field">
 
                         <!--Departure Text -->
                         <TextView
@@ -184,8 +186,8 @@
                         android:id="@+id/return_field"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/depature_to_field"
-                        android:layout_toEndOf="@+id/departure_field">
+                        android:layout_toEndOf="@+id/departure_field"
+                        android:background="@drawable/departure_to_field">
                         <!--Return Text -->
                         <TextView
                             android:id="@+id/return_text"
@@ -222,7 +224,6 @@
                 android:id="@+id/passenger_luggage_field"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/flight_info_field"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp">
 
@@ -313,7 +314,6 @@
                 android:id="@+id/class_field"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/passenger_luggage_field"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp">
 
@@ -451,14 +451,13 @@
 
             </RelativeLayout>
 
-            <!--Search butotn -->
+            <!--Search button -->
             <Button
                 android:id="@+id/ticket_search_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/transport_field"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
+                android:layout_gravity="center_horizontal"
                 android:text="@string/search"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -466,10 +465,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:background="@drawable/ticket_search_button" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="300dp"/>
-        </RelativeLayout>
+        </LinearLayout>
     </ScrollView>
 
     <!--Bottom Navigation -->

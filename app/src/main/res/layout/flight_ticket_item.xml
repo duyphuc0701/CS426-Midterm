@@ -92,13 +92,14 @@
     </RelativeLayout>
 
     <!--Dotted divider line -->
-    <View
+    <ImageView
         android:id="@+id/ticket_divider"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/ticket_locations_field"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/flight_ticket_divider" />
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ticket_divider"
+        android:contentDescription="@string/ticket_divider"/>
 
     <!--Flight information field-->
     <RelativeLayout
