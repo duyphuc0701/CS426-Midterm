@@ -77,52 +77,54 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <Button
+                        <ToggleButton
                             android:id="@+id/filter_departure_button_1"
-                            android:layout_width="124dp"
-                            android:layout_height="36dp"
-                            android:text="@string/_12am_06am"
-                            android:textColor="@color/green_500"
-                            android:textSize="14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textOn="@string/_12am_06am"
+                            android:textOff="@string/_12am_06am"
+                            android:textSize="12sp"
+                            android:textColor="@color/toggle_text"
                             android:gravity="center"
                             android:fontFamily="@font/poppins_medium"
-                            android:background="@drawable/normal_fliter_time_button" />
+                            android:background="@drawable/filter_time_toggle_button" />
 
-                        <Button
+                        <ToggleButton
                             android:id="@+id/filter_departure_button_2"
-                            android:layout_width="124dp"
-                            android:layout_height="36dp"
-                            android:layout_marginStart="7dp"
-                            android:text="@string/_6am_12pm"
-                            android:textColor="@color/white"
-                            android:textSize="14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textOn="@string/_6am_12pm"
+                            android:textOff="@string/_6am_12pm"
+                            android:textSize="12sp"
+                            android:textColor="@color/toggle_text"
                             android:gravity="center"
                             android:fontFamily="@font/poppins_medium"
-                            android:background="@drawable/active_filter_time_button" />
+                            android:checked="true"
+                            android:background="@drawable/filter_time_toggle_button" />
 
-                        <Button
+                        <ToggleButton
                             android:id="@+id/filter_departure_button_3"
-                            android:layout_width="124dp"
-                            android:layout_height="36dp"
-                            android:layout_marginStart="7dp"
-                            android:text="@string/_12pm_6pm"
-                            android:textColor="@color/green_500"
-                            android:textSize="14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textOn="@string/_12pm_6pm"
+                            android:textOff="@string/_12pm_6pm"
+                            android:textSize="12sp"
+                            android:textColor="@color/toggle_text"
                             android:gravity="center"
                             android:fontFamily="@font/poppins_medium"
-                            android:background="@drawable/normal_fliter_time_button" />
+                            android:background="@drawable/filter_time_toggle_button" />
 
-                        <Button
+                        <ToggleButton
                             android:id="@+id/filter_departure_button_4"
-                            android:layout_width="124dp"
-                            android:layout_height="36dp"
-                            android:layout_marginStart="7dp"
-                            android:text="@string/_6pm_12am"
-                            android:textColor="@color/green_500"
-                            android:textSize="14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textOn="@string/_6pm_12am"
+                            android:textOff="@string/_6pm_12am"
+                            android:textSize="12sp"
+                            android:textColor="@color/toggle_text"
                             android:gravity="center"
                             android:fontFamily="@font/poppins_medium"
-                            android:background="@drawable/normal_fliter_time_button" />
+                            android:background="@drawable/filter_time_toggle_button" />
 
                     </LinearLayout>
                 </HorizontalScrollView>
@@ -163,52 +165,54 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <Button
+                        <ToggleButton
                             android:id="@+id/filter_arrival_button_1"
-                            android:layout_width="124dp"
-                            android:layout_height="36dp"
-                            android:text="@string/_12am_06am"
-                            android:textColor="@color/white"
-                            android:textSize="14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textOn="@string/_12am_06am"
+                            android:textOff="@string/_12am_06am"
+                            android:textSize="12sp"
+                            android:textColor="@color/toggle_text"
                             android:gravity="center"
                             android:fontFamily="@font/poppins_medium"
-                            android:background="@drawable/active_filter_time_button" />
+                            android:checked="true"
+                            android:background="@drawable/filter_time_toggle_button" />
 
-                        <Button
+                        <ToggleButton
                             android:id="@+id/filter_arrival_button_2"
-                            android:layout_width="124dp"
-                            android:layout_height="36dp"
-                            android:layout_marginStart="7dp"
-                            android:text="@string/_6am_12pm"
-                            android:textColor="@color/green_500"
-                            android:textSize="14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textOn="@string/_6am_12pm"
+                            android:textOff="@string/_6am_12pm"
+                            android:textSize="12sp"
+                            android:textColor="@color/toggle_text"
                             android:gravity="center"
                             android:fontFamily="@font/poppins_medium"
-                            android:background="@drawable/normal_fliter_time_button" />
+                            android:background="@drawable/filter_time_toggle_button" />
 
-                        <Button
+                        <ToggleButton
                             android:id="@+id/filter_arrival_button_3"
-                            android:layout_width="124dp"
-                            android:layout_height="36dp"
-                            android:layout_marginStart="7dp"
-                            android:text="@string/_12pm_6pm"
-                            android:textColor="@color/green_500"
-                            android:textSize="14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textOn="@string/_12pm_6pm"
+                            android:textOff="@string/_12pm_6pm"
+                            android:textSize="12sp"
+                            android:textColor="@color/toggle_text"
                             android:gravity="center"
                             android:fontFamily="@font/poppins_medium"
-                            android:background="@drawable/normal_fliter_time_button" />
+                            android:background="@drawable/filter_time_toggle_button" />
 
-                        <Button
+                        <ToggleButton
                             android:id="@+id/filter_arrival_button_4"
-                            android:layout_width="124dp"
-                            android:layout_height="36dp"
-                            android:layout_marginStart="7dp"
-                            android:text="@string/_6pm_12am"
-                            android:textColor="@color/green_500"
-                            android:textSize="14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textOn="@string/_6pm_12am"
+                            android:textOff="@string/_6pm_12am"
+                            android:textSize="12sp"
+                            android:textColor="@color/toggle_text"
                             android:gravity="center"
                             android:fontFamily="@font/poppins_medium"
-                            android:background="@drawable/normal_fliter_time_button" />
+                            android:background="@drawable/filter_time_toggle_button" />
 
                     </LinearLayout>
                 </HorizontalScrollView>
@@ -277,18 +281,33 @@
                             android:gravity="center_horizontal|top"
                             android:layout_marginStart="15dp"/>
 
-                        <TextView
-                            android:id="@+id/filter_price_from_value"
+                        <RelativeLayout
+                            android:id="@+id/price_from_input_field"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/filter_price_from_text"
-                            android:text="@string/fifty_dollars"
-                            android:textColor="@color/text_primary"
-                            android:textSize="16sp"
-                            android:fontFamily="@font/poppins_medium"
-                            android:lineSpacingExtra="-2sp"
-                            android:gravity="center_horizontal|top"
-                            android:layout_marginStart="15dp"/>
+                            android:layout_below="@+id/filter_price_from_text">
+                            <TextView
+                                android:id="@+id/price_from_dollar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/dollar_sign"
+                                android:textColor="@color/text_primary"
+                                android:textSize="16sp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:gravity="bottom|end"/>
+                            <EditText
+                                android:id="@+id/filter_price_from_value"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toEndOf="@+id/price_from_dollar"
+                                android:inputType="number"
+                                android:text="@string/fifty"
+                                android:textColor="@color/text_primary"
+                                android:textSize="16sp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:lineSpacingExtra="-2sp" />
+                        </RelativeLayout>
 
                     </RelativeLayout>
 
@@ -314,18 +333,33 @@
                             android:gravity="center_horizontal|top"
                             android:layout_marginStart="15dp"/>
 
-                        <TextView
-                            android:id="@+id/filter_price_to_value"
+                        <RelativeLayout
+                            android:id="@+id/price_to_input_field"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/filter_price_to_text"
-                            android:text="@string/_250_dollars"
-                            android:textColor="@color/text_primary"
-                            android:textSize="16sp"
-                            android:fontFamily="@font/poppins_medium"
-                            android:lineSpacingExtra="-2sp"
-                            android:gravity="center_horizontal|top"
-                            android:layout_marginStart="15dp"/>
+                            android:layout_below="@+id/filter_price_to_text">
+                            <TextView
+                                android:id="@+id/price_to_dollar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/dollar_sign"
+                                android:textColor="@color/text_primary"
+                                android:textSize="16sp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:gravity="bottom|end"/>
+                            <EditText
+                                android:id="@+id/filter_price_to_value"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toEndOf="@+id/price_to_dollar"
+                                android:inputType="number"
+                                android:text="@string/_250"
+                                android:textColor="@color/text_primary"
+                                android:textSize="16sp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:lineSpacingExtra="-2sp" />
+                        </RelativeLayout>
 
                     </RelativeLayout>
 

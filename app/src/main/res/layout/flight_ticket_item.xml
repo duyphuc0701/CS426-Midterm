@@ -134,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ticket_date_text"
                 android:text="@string/june_02"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="@color/text_primary"
                 android:lineSpacingExtra="-2sp"
                 android:gravity="top" />
@@ -165,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ticket_time_text"
                 android:text="@string/nine_am"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="@color/text_primary"
                 android:lineSpacingExtra="-2sp"
                 android:gravity="top" />
@@ -196,7 +196,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ticket_price_text"
                 android:text="@string/fifty_dollars"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="@color/text_primary"
                 android:lineSpacingExtra="-2sp"
                 android:gravity="top" />
@@ -227,7 +227,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ticket_flightNumber_text"
                 android:text="@string/nl_41"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="@color/text_primary"
                 android:lineSpacingExtra="-2sp"
                 android:gravity="top" />

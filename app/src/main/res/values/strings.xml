@@ -110,4 +110,7 @@
     <string name="seat">Seat</string>
     <string name="two_a">2A</string>
     <string name="download_ticket">Download ticket</string>
+    <string name="dollar_sign">$</string>
+    <string name="fifty">50</string>
+    <string name="_250">250</string>
 </resources>

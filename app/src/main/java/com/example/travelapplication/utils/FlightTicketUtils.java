@@ -33,10 +33,7 @@ public class FlightTicketUtils {
         // Initialize flight cities
         citiesLookup.put("NYC", "New York");
         citiesLookup.put("LDN", "London");
-        // Fill the array with NYC_LDN tickets.
-        for (int i = 0; i < NYC_LDN_COUNT; i++) {
-            add_NYC_LDN_tickets(create_NYC_LDN_ticketsAtPosition(i));
-        }
+
         // Initialize all flights
 
     }
@@ -112,9 +109,11 @@ public class FlightTicketUtils {
         String[] flightNumbers = new String[count];
 
         for (int i = 0; i < count; i++) {
-            String sb = String.valueOf((char) (random.nextInt(26) + 'A')) + // First letter
+            String sb = String.valueOf(
+                    (char) (random.nextInt(26) + 'A')) + // First letter
                     (char) (random.nextInt(26) + 'A') + // Second letter
-                    random.nextInt(1000); // Random number (up to 999)
+                    "-" +
+                    random.nextInt(100); // Random number (up to 999)
             flightNumbers[i] = sb;
         }
 
@@ -141,47 +140,5 @@ public class FlightTicketUtils {
             this.price = price;
             this.flightNumber = flightNumber;
         }
-    }
-
-    private static void add_NYC_LDN_tickets(FlightTicket ticketAtPosition) {
-        NYC_LDN_TICKETS.add(ticketAtPosition);
-    }
-
-    private static FlightTicket create_NYC_LDN_ticketsAtPosition(int i) {
-        Date newDepartureDate;
-        String newDepartureTime;
-        int newPrice;
-        String newFlightNumber;
-        String fromLocationShort = "NYC";
-        String toLocationShort = "LDN";
-        switch (i) {
-            case 0:
-                newDepartureDate = new Date(2024, 6, 2);
-                newDepartureTime = "9:00 AM";
-                newPrice = 50;
-                newFlightNumber = "NL-41";
-                break;
-            case 1:
-                newDepartureDate = new Date(2024, 6, 2);
-                newDepartureTime = "8:00 AM";
-                newPrice = 60;
-                newFlightNumber = "NL-42";
-                break;
-            case 2:
-                newDepartureDate = new Date(2024, 6, 2);
-                newDepartureTime = "7:00 AM";
-                newPrice = 65;
-                newFlightNumber = "NL-43";
-                break;
-            default:
-                newDepartureDate = new Date(2024, 6, 3);
-                newDepartureTime = "9:00 AM";
-                newPrice = 50;
-                newFlightNumber = "NL-41";
-                break;
-        }
-        return new FlightTicket(fromLocationShort, citiesLookup.get(fromLocationShort),
-                toLocationShort, citiesLookup.get(toLocationShort),
-                newDepartureDate, newDepartureTime, newPrice, newFlightNumber);
     }
 }
