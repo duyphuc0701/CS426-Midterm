@@ -29,6 +29,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/hotelBookingImageView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/booking_screen_title"
@@ -45,6 +46,7 @@
                 android:src="@drawable/image_transport"/>
 
             <ImageView
+                android:id="@+id/tripsBookingImageView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -52,6 +54,7 @@
                 android:src="@drawable/image_trips"/>
 
             <ImageView
+                android:id="@+id/eventsBookingImageView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"

@@ -34,7 +34,14 @@ public class FlightsDetailsActivity extends AppCompatActivity {
             return insets;
         });
 
-        replaceFragment(new FlightsDetailsFragment(), true);
+        Intent intent = getIntent();
+        Bundle bundle = new Bundle();
+        bundle.putString(FlightTicketUtils.DEPARTURE_CITY, intent.getStringExtra(FlightTicketUtils.DEPARTURE_CITY));
+        bundle.putString(FlightTicketUtils.ARRIVAL_CITY, intent.getStringExtra(FlightTicketUtils.ARRIVAL_CITY));
+        bundle.putString(FlightTicketUtils.DEPARTURE_DATE, intent.getStringExtra(FlightTicketUtils.DEPARTURE_DATE));
+        FlightsDetailsFragment frag = new FlightsDetailsFragment();
+        frag.setArguments(bundle);
+        replaceFragment(frag, true);
     }
 
     private void replaceFragment(Fragment fragment, boolean addToBackStack) {

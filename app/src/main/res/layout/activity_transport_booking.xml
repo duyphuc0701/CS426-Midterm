@@ -56,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal">
-                <!--From-To-Button field -->
+                <!--From-To-Switch Button field -->
                 <RelativeLayout
                     android:id="@+id/from_to_locations"
                     android:layout_width="wrap_content"
@@ -339,12 +339,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/economy"
-                        android:textSize="14sp"
-                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:textColor="@color/green_500"
                         android:textAllCaps="false"
                         android:fontFamily="@font/poppins_medium"
-                        android:backgroundTint="@color/green_500"
-                        android:background="@drawable/class_button"/>
+                        android:background="@drawable/normal_class_button"/>
 
                     <!--Business button -->
                     <Button
@@ -354,12 +353,11 @@
                         android:layout_toEndOf="@+id/economy_class_button"
                         android:layout_marginStart="20dp"
                         android:text="@string/business"
-                        android:textSize="14sp"
-                        android:textColor="@color/green_500"
+                        android:textSize="12sp"
+                        android:textColor="@color/white"
                         android:textAllCaps="false"
                         android:fontFamily="@font/poppins_medium"
-                        android:backgroundTint="@color/white"
-                        android:background="@drawable/class_button"/>
+                        android:background="@drawable/active_class_button"/>
 
                 </RelativeLayout>
 

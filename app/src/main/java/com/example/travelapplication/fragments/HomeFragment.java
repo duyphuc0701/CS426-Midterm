@@ -9,12 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import com.example.travelapplication.MainActivity;
 import com.example.travelapplication.R;
 import com.example.travelapplication.TransportBookingActivity;
+import com.example.travelapplication.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
-
+    FragmentHomeBinding binding;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -27,16 +30,39 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(
-                R.layout.fragment_home, container, false);
-        ImageButton transportServiceButton = rootView.findViewById(R.id.transport_service_image_button);
-        transportServiceButton.setOnClickListener(new View.OnClickListener() {
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        View rootView = binding.getRoot();
+
+        initServicesButton();
+
+        return rootView;
+    }
+
+    private void initServicesButton() {
+        binding.tripServiceImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Currently not available", Toast.LENGTH_SHORT).show();
+            }
+        });
+        binding.hotelServiceImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Currently not available", Toast.LENGTH_SHORT).show();
+            }
+        });
+        binding.transportServiceImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), TransportBookingActivity.class);
                 startActivity(intent);
             }
         });
-        return rootView;
+        binding.eventsServiceImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Currently not available", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

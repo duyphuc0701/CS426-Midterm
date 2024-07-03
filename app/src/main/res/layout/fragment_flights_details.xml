@@ -33,275 +33,23 @@
     </RelativeLayout>
 
     <!--Date Tabs field -->
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/date_tabs_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_below="@id/flightsDetailsAppBar"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_marginStart="15dp">
 
-        <!--Date tab 1 -->
-        <RelativeLayout
-            android:id="@+id/date_tab_1"
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/date_tabs_recyclerView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/active_date_tab">
+            android:orientation="horizontal"
+            android:scrollbars="horizontal"/>
 
-            <!--Day in week abbreviation -->
-            <TextView
-                android:id="@+id/date_in_week_tab_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/TH"
-                android:textSize="12sp"
-                android:textColor="@color/text_primary"
-                android:fontFamily="@font/poppins_medium"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:gravity="center_horizontal|top" />
-
-            <!--Day in month -->
-            <TextView
-                android:id="@+id/date_in_month_tab_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/number_02"
-                android:textSize="14sp"
-                android:textColor="@color/text_primary"
-                android:fontFamily="@font/poppins_bold"
-                android:lineSpacingExtra="-1sp"
-                android:gravity="center_horizontal|top"
-                android:layout_below="@+id/date_in_week_tab_1"
-                android:layout_centerHorizontal="true"/>
-
-        </RelativeLayout>
-
-        <!--Date tab 2 -->
-        <RelativeLayout
-            android:id="@+id/date_tab_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/normal_date_tab"
-            android:layout_toEndOf="@id/date_tab_1"
-            android:layout_marginStart="15dp">
-
-            <!--Day in week abbreviation -->
-            <TextView
-                android:id="@+id/date_in_week_tab_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/FR"
-                android:textSize="12sp"
-                android:textColor="@color/text_primary"
-                android:fontFamily="@font/poppins_medium"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:gravity="center_horizontal|top" />
-
-            <!--Day in month -->
-            <TextView
-                android:id="@+id/date_in_month_tab_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/number_03"
-                android:textSize="14sp"
-                android:textColor="@color/text_primary"
-                android:fontFamily="@font/poppins_bold"
-                android:lineSpacingExtra="-1sp"
-                android:gravity="center_horizontal|top"
-                android:layout_below="@+id/date_in_week_tab_2"
-                android:layout_centerHorizontal="true"/>
-
-        </RelativeLayout>
-
-        <!--Date tab 3 -->
-        <RelativeLayout
-            android:id="@+id/date_tab_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/normal_date_tab"
-            android:layout_toEndOf="@id/date_tab_2"
-            android:layout_marginStart="15dp">
-
-            <!--Day in week abbreviation -->
-            <TextView
-                android:id="@+id/date_in_week_tab_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/SA"
-                android:textSize="12sp"
-                android:textColor="@color/text_primary"
-                android:fontFamily="@font/poppins_medium"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:gravity="center_horizontal|top" />
-
-            <!--Day in month -->
-            <TextView
-                android:id="@+id/date_in_month_tab_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/number_04"
-                android:textSize="14sp"
-                android:textColor="@color/text_primary"
-                android:fontFamily="@font/poppins_bold"
-                android:lineSpacingExtra="-1sp"
-                android:gravity="center_horizontal|top"
-                android:layout_below="@+id/date_in_week_tab_3"
-                android:layout_centerHorizontal="true"/>
-        </RelativeLayout>
-
-        <!--Date tab 4 -->
-        <RelativeLayout
-            android:id="@+id/date_tab_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/normal_date_tab"
-            android:layout_toEndOf="@id/date_tab_3"
-            android:layout_marginStart="15dp">
-
-            <!--Day in week abbreviation -->
-            <TextView
-                android:id="@+id/date_in_week_tab_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/SU"
-                android:textSize="12sp"
-                android:textColor="@color/text_primary"
-                android:fontFamily="@font/poppins_medium"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:gravity="center_horizontal|top" />
-
-            <!--Day in month -->
-            <TextView
-                android:id="@+id/date_in_month_tab_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/number_05"
-                android:textSize="14sp"
-                android:textColor="@color/text_primary"
-                android:fontFamily="@font/poppins_bold"
-                android:lineSpacingExtra="-1sp"
-                android:gravity="center_horizontal|top"
-                android:layout_below="@+id/date_in_week_tab_4"
-                android:layout_centerHorizontal="true"/>
-        </RelativeLayout>
-
-        <!--Date tab 5 -->
-        <RelativeLayout
-            android:id="@+id/date_tab_5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/normal_date_tab"
-            android:layout_toEndOf="@id/date_tab_4"
-            android:layout_marginStart="15dp">
-
-            <!--Day in week abbreviation -->
-            <TextView
-                android:id="@+id/date_in_week_tab_5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/MO"
-                android:textSize="12sp"
-                android:textColor="@color/text_primary"
-                android:fontFamily="@font/poppins_medium"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:gravity="center_horizontal|top" />
-
-            <!--Day in month -->
-            <TextView
-                android:id="@+id/date_in_month_tab_5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/number_06"
-                android:textSize="14sp"
-                android:textColor="@color/text_primary"
-                android:fontFamily="@font/poppins_bold"
-                android:lineSpacingExtra="-1sp"
-                android:gravity="center_horizontal|top"
-                android:layout_below="@+id/date_in_week_tab_5"
-                android:layout_centerHorizontal="true"/>
-        </RelativeLayout>
-
-        <!--Date tab 6 -->
-        <RelativeLayout
-            android:id="@+id/date_tab_6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/normal_date_tab"
-            android:layout_toEndOf="@id/date_tab_5"
-            android:layout_marginStart="15dp">
-
-            <!--Day in week abbreviation -->
-            <TextView
-                android:id="@+id/date_in_week_tab_6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/TU"
-                android:textSize="12sp"
-                android:textColor="@color/text_primary"
-                android:fontFamily="@font/poppins_medium"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:gravity="center_horizontal|top" />
-
-            <!--Day in month -->
-            <TextView
-                android:id="@+id/date_in_month_tab_6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/number_07"
-                android:textSize="14sp"
-                android:textColor="@color/text_primary"
-                android:fontFamily="@font/poppins_bold"
-                android:lineSpacingExtra="-1sp"
-                android:gravity="center_horizontal|top"
-                android:layout_below="@+id/date_in_week_tab_6"
-                android:layout_centerHorizontal="true"/>
-        </RelativeLayout>
-
-        <!--Date tab 7 -->
-        <RelativeLayout
-            android:id="@+id/date_tab_7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/normal_date_tab"
-            android:layout_toEndOf="@id/date_tab_6"
-            android:layout_marginStart="15dp">
-
-            <!--Day in week abbreviation -->
-            <TextView
-                android:id="@+id/date_in_week_tab_7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/WE"
-                android:textSize="12sp"
-                android:textColor="@color/text_primary"
-                android:fontFamily="@font/poppins_medium"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:gravity="center_horizontal|top" />
-
-            <!--Day in month -->
-            <TextView
-                android:id="@+id/date_in_month_tab_7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/number_08"
-                android:textSize="14sp"
-                android:textColor="@color/text_primary"
-                android:fontFamily="@font/poppins_bold"
-                android:lineSpacingExtra="-1sp"
-                android:gravity="center_horizontal|top"
-                android:layout_below="@+id/date_in_week_tab_7"
-                android:layout_centerHorizontal="true"/>
-        </RelativeLayout>
-
-    </RelativeLayout>
+    </LinearLayout>
 
     <!--Available and Filter field -->
     <RelativeLayout
@@ -311,6 +59,7 @@
         android:layout_marginTop="20dp"
         android:layout_below="@+id/date_tabs_field">
 
+        <!--Available flights text -->
         <TextView
             android:id="@+id/flights_available_text"
             android:layout_width="wrap_content"
@@ -324,6 +73,7 @@
             android:lineSpacingExtra="-1sp"
             android:gravity="center_horizontal|top" />
 
+        <!--Filter button -->
         <ImageButton
             android:id="@+id/filter_image_button"
             android:layout_width="wrap_content"

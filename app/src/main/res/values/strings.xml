@@ -49,7 +49,7 @@
     <string name="number_07">07</string>
     <string name="WE">WE</string>
     <string name="number_08">08</string>
-    <string name="flights_available_text">7 flights available New York to London</string>
+    <string name="flights_available_text">6 flights available New York to London</string>
     <string name="filter_button">Filter button</string>
     <string name="new_york_shorthand">NYC</string>
     <string name="new_york_full">New York</string>

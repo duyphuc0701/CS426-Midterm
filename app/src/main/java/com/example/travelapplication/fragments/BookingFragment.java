@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.travelapplication.TransportBookingActivity;
 import com.example.travelapplication.databinding.FragmentBookingBinding;
@@ -30,11 +31,34 @@ public class BookingFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentBookingBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
+
+        initBookingImageViews();
+
+        return rootView;
+    }
+
+    private void initBookingImageViews() {
+        binding.hotelBookingImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Currently not available", Toast.LENGTH_SHORT).show();
+            }
+        });
         binding.transportBookingImageView.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), TransportBookingActivity.class);
             startActivity(intent);
         });
-
-        return rootView;
+        binding.tripsBookingImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Currently not available", Toast.LENGTH_SHORT).show();
+            }
+        });
+        binding.eventsBookingImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Currently not available", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,12 +16,15 @@ import com.example.travelapplication.R;
 import com.example.travelapplication.utils.FlightTicketUtils;
 
 import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Locale;
 
 public class FlightTicketsAdapter extends
         RecyclerView.Adapter<FlightTicketsAdapter.ViewHolder>{
-    private final List<FlightTicketUtils.FlightTicket> flightTickets;
+    private List<FlightTicketUtils.FlightTicket> flightTickets;
     private final OnItemClickListener listener;
 
     public interface OnItemClickListener {
@@ -78,5 +82,10 @@ public class FlightTicketsAdapter extends
     @Override
     public int getItemCount() {
         return flightTickets.size();
+    }
+
+    public void updateFlightsList(List<FlightTicketUtils.FlightTicket> newFlightsList) {
+        this.flightTickets = newFlightsList;
+        notifyDataSetChanged();
     }
 }

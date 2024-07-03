@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/date_tab_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="20dp">
+
+    <!--Day in week abbreviation -->
+    <TextView
+        android:id="@+id/date_in_week_tab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/TH"
+        android:textSize="12sp"
+        android:textColor="@color/text_primary"
+        android:fontFamily="@font/poppins_medium"
+        android:layout_marginTop="8dp"
+        android:gravity="center_horizontal|top" />
+
+    <!--Day in month -->
+    <TextView
+        android:id="@+id/date_in_month_tab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/date_in_week_tab"
+        android:layout_centerHorizontal="true"
+        android:text="@string/number_02"
+        android:textSize="14sp"
+        android:textColor="@color/text_primary"
+        android:fontFamily="@font/poppins_bold"
+        android:lineSpacingExtra="-1sp"
+        android:gravity="center_horizontal|top" />
+
+</RelativeLayout>
