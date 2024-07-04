@@ -97,10 +97,22 @@ public class TransportBookingActivity extends AppCompatActivity {
             else {
                 String departureCity = binding.fromSpinner.getSelectedItem().toString();
                 String arrivalCity = binding.toSpinner.getSelectedItem().toString();
+                departureCity = extractAirportCode(departureCity);
+                arrivalCity = extractAirportCode(arrivalCity);
+                Calendar departureDateCalendar = Calendar.getInstance();
+                String departureDateString = binding.departureDate.getText().toString();
+                int adultsNum = Integer.parseInt(binding.passengerNumEdit.getText().toString());
+                try {
+                    departureDateCalendar.setTime(FlightTicketUtils.dateFormat.parse(departureDateString));
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
                 Intent intent = new Intent(this, FlightsDetailsActivity.class);
-                intent.putExtra(FlightTicketUtils.DEPARTURE_CITY, departureCity);
-                intent.putExtra(FlightTicketUtils.ARRIVAL_CITY, arrivalCity);
-                intent.putExtra(FlightTicketUtils.DEPARTURE_DATE, binding.departureDate.getText().toString());
+                intent.putExtra(FlightTicketUtils.DEPARTURE_CITY_CODE, departureCity);
+                intent.putExtra(FlightTicketUtils.ARRIVAL_CITY_CODE, arrivalCity);
+                intent.putExtra(FlightTicketUtils.DEPARTURE_DATE, departureDateCalendar.getTimeInMillis());
+                intent.putExtra(FlightTicketUtils.TICKET_CLASS, isEconomyClass);
+                intent.putExtra(FlightTicketUtils.ADULTS_NUM, adultsNum);
                 startActivity(intent);
             }
         });
@@ -292,5 +304,17 @@ public class TransportBookingActivity extends AppCompatActivity {
             fragmentTransaction.addToBackStack(null);
         }
         fragmentTransaction.commit();
+    }
+
+    private static String extractAirportCode(String city) {
+        if (city == null || city.isEmpty()) {
+            return "";
+        }
+        int start = city.indexOf('(');
+        int end = city.indexOf(')');
+        if (start != -1 && end != -1 && start < end) {
+            return city.substring(start + 1, end);
+        }
+        return "";
     }
 }

@@ -4,6 +4,7 @@ import android.util.Pair;
 
 import com.example.travelapplication.fragments.FlightsDetailsFragment;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,9 +16,13 @@ import java.util.Locale;
 import java.util.Random;
 
 public class FlightTicketUtils {
-    public static final String DEPARTURE_CITY = "departureCity";
-    public static final String ARRIVAL_CITY = "arrivalCity";
+    public static final String DEPARTURE_CITY_CODE = "departureCity";
+    public static final String ARRIVAL_CITY_CODE = "arrivalCity";
     public static final String DEPARTURE_DATE = "departureDate";
+    public static final String SELECTED_FLIGHT = "selectedFlight";
+    public static final String TICKET_CLASS = "ticketClass";
+    public static final String SEAT_LIST = "seatCode";
+    public static final String ADULTS_NUM = "adultsNum";
     public static SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
     public static final HashMap<String, String> citiesLookup = new HashMap<>();
     public static final HashMap<Pair<Date, Pair<String, String>>, List<FlightTicket>> allFlights = new HashMap<>();
@@ -36,18 +41,6 @@ public class FlightTicketUtils {
 
         // Initialize all flights
 
-    }
-
-    public static String extractAirportCode(String city) {
-        if (city == null || city.isEmpty()) {
-            return "";
-        }
-        int start = city.indexOf('(');
-        int end = city.indexOf(')');
-        if (start != -1 && end != -1 && start < end) {
-            return city.substring(start + 1, end);
-        }
-        return "";
     }
 
     public static List<FlightTicket> generateDummyFlights(String fromLocationShort, String toLocationShort, Calendar departureCalendar) {
@@ -120,7 +113,7 @@ public class FlightTicketUtils {
         return flightNumbers;
     }
 
-    public static class FlightTicket {
+    public static class FlightTicket implements Serializable {
         public final String fromLocationShort;
         public final String fromLocationFull;
         public final String toLocationShort;

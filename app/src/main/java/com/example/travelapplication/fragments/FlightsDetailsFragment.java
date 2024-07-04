@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +21,9 @@ import com.example.travelapplication.databinding.FragmentFlightsDetailsBinding;
 import com.example.travelapplication.utils.DateTab;
 import com.example.travelapplication.utils.FlightTicketUtils;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -35,7 +34,6 @@ public class FlightsDetailsFragment extends Fragment {
     DateTabsAdapter dateTabsAdapter;
     List<DateTab> dateTabList;
     List<FlightTicketUtils.FlightTicket> flightsList;
-    Calendar departureCalendar = Calendar.getInstance();
 
     public FlightsDetailsFragment() {
         // Required empty public constructor
@@ -53,46 +51,46 @@ public class FlightsDetailsFragment extends Fragment {
         binding = FragmentFlightsDetailsBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
 
-        String departureCity = getArguments().getString(FlightTicketUtils.DEPARTURE_CITY);
-        String arrivalCity = getArguments().getString(FlightTicketUtils.ARRIVAL_CITY);
-        String departureDate = getArguments().getString(FlightTicketUtils.DEPARTURE_DATE);
+        Bundle bundle = getArguments();
+        String departureCityCode = bundle.getString(FlightTicketUtils.DEPARTURE_CITY_CODE);
+        String arrivalCityCode = bundle.getString(FlightTicketUtils.ARRIVAL_CITY_CODE);
+        long departureDateMillis = bundle.getLong(FlightTicketUtils.DEPARTURE_DATE);
+        boolean ticketClass = bundle.getBoolean(FlightTicketUtils.TICKET_CLASS);
+        int adultsNum = bundle.getInt(FlightTicketUtils.ADULTS_NUM);
 
-        String fromLocationShort = FlightTicketUtils.extractAirportCode(departureCity);
-        String toLocationShort = FlightTicketUtils.extractAirportCode(arrivalCity);
+        Calendar departureCalendar = Calendar.getInstance();
+        departureCalendar.setTimeInMillis(departureDateMillis);
 
-        initDepartureCalendar(departureDate);
+        initDateTabsList(departureDateMillis);
 
-        initDateTabsRecyclerView(fromLocationShort, toLocationShort);
+        initDateTabsRecyclerView(departureCityCode, arrivalCityCode, departureCalendar);
 
-        initFlightsTicketsRecyclerView(fromLocationShort, toLocationShort, departureCalendar);
+        initFlightsTicketsRecyclerView(departureCityCode, arrivalCityCode, departureCalendar, ticketClass, adultsNum);
 
-        binding.flightsDetailsBackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                requireActivity().finish();
-            }
-        });
+        initBackButton();
 
         initFilterImageButton();
 
         return rootView;
     }
 
-    private void initDepartureCalendar(String departureDate) {
-        dateTabList = new ArrayList<>();
-        Date departureDateObject;
-        try {
-            departureDateObject = FlightTicketUtils.dateFormat.parse(departureDate);
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(departureDateObject);
-
-            for (int i = 0; i < 7; i++) {
-                String dayOfWeek = new SimpleDateFormat("EE", Locale.ENGLISH).format(calendar.getTime()).toUpperCase(Locale.ENGLISH);
-                dateTabList.add(new DateTab(dayOfWeek, calendar.get(Calendar.DAY_OF_MONTH), i == 0)); // Set the first date as active
-                calendar.add(Calendar.DAY_OF_MONTH, 1);
+    private void initBackButton() {
+        binding.flightsDetailsBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requireActivity().finish();
             }
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
+        });
+    }
+
+    private void initDateTabsList(long departureDateMillis) {
+        Calendar tempCalendar = Calendar.getInstance();
+        tempCalendar.setTimeInMillis(departureDateMillis);
+        dateTabList = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            String dayOfWeek = new SimpleDateFormat("EE", Locale.ENGLISH).format(tempCalendar.getTime()).toUpperCase(Locale.ENGLISH);
+            dateTabList.add(new DateTab(dayOfWeek, tempCalendar.get(Calendar.DAY_OF_MONTH), i == 0)); // Set the first date as active
+            tempCalendar.add(Calendar.DAY_OF_MONTH, 1);
         }
     }
 
@@ -109,7 +107,7 @@ public class FlightsDetailsFragment extends Fragment {
         });
     }
 
-    private void initDateTabsRecyclerView(String fromLocationShort, String toLocationShort) {
+    private void initDateTabsRecyclerView(String departureCityCode, String arrivalCityCode, Calendar departureCalendar) {
         // Initialize dateTabsAdapter
         dateTabsAdapter = new DateTabsAdapter(
                 dateTabList,
@@ -118,7 +116,8 @@ public class FlightsDetailsFragment extends Fragment {
                     public void onItemClick(DateTab item) {
                         dateTabsAdapter.setActiveDateTab(item);
                         departureCalendar.set(Calendar.DAY_OF_MONTH, item.getDayInMonthValue());
-                        flightTicketsAdapter.updateFlightsList(FlightTicketUtils.generateDummyFlights(fromLocationShort, toLocationShort, departureCalendar));
+                        // Get the flights list corresponding to the date
+                        flightTicketsAdapter.updateFlightsList(FlightTicketUtils.generateDummyFlights(departureCityCode, arrivalCityCode, departureCalendar));
                     }
                 });
         binding.dateTabsRecyclerView.setLayoutManager(new LinearLayoutManager(
@@ -127,8 +126,10 @@ public class FlightsDetailsFragment extends Fragment {
         binding.dateTabsRecyclerView.setAdapter(dateTabsAdapter);
     }
 
-    private void initFlightsTicketsRecyclerView(String fromLocationShort, String toLocationShort, Calendar departureCalendar) {
-        flightsList = FlightTicketUtils.generateDummyFlights(fromLocationShort, toLocationShort, departureCalendar);
+    private void initFlightsTicketsRecyclerView(String departureCityCode, String arrivalCityCode,
+                                                Calendar departureCalendar, boolean ticketClass, int adultsNum) {
+        // TODO: Replace with data
+        flightsList = FlightTicketUtils.generateDummyFlights(departureCityCode, arrivalCityCode, departureCalendar);
         flightTicketsAdapter =
                 new FlightTicketsAdapter(
                         flightsList,
@@ -136,6 +137,9 @@ public class FlightsDetailsFragment extends Fragment {
                             @Override
                             public void onItemClick(FlightTicketUtils.FlightTicket item) {
                                 Intent intent = new Intent(getActivity(), SelectSeatActivity.class);
+                                intent.putExtra(FlightTicketUtils.SELECTED_FLIGHT, item);
+                                intent.putExtra(FlightTicketUtils.TICKET_CLASS, ticketClass);
+                                intent.putExtra(FlightTicketUtils.ADULTS_NUM, adultsNum);
                                 startActivity(intent);
                             }
                         });

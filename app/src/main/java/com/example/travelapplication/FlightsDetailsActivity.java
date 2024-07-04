@@ -35,10 +35,17 @@ public class FlightsDetailsActivity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
+        String departureCity = intent.getStringExtra(FlightTicketUtils.DEPARTURE_CITY_CODE);
+        String arrivalCity = intent.getStringExtra(FlightTicketUtils.ARRIVAL_CITY_CODE);
+        long departureDateMillis = intent.getLongExtra(FlightTicketUtils.DEPARTURE_DATE, -1);
+        boolean ticketClass = intent.getBooleanExtra(FlightTicketUtils.TICKET_CLASS, false);
+        int adultsNum = intent.getIntExtra(FlightTicketUtils.ADULTS_NUM, -1);
         Bundle bundle = new Bundle();
-        bundle.putString(FlightTicketUtils.DEPARTURE_CITY, intent.getStringExtra(FlightTicketUtils.DEPARTURE_CITY));
-        bundle.putString(FlightTicketUtils.ARRIVAL_CITY, intent.getStringExtra(FlightTicketUtils.ARRIVAL_CITY));
-        bundle.putString(FlightTicketUtils.DEPARTURE_DATE, intent.getStringExtra(FlightTicketUtils.DEPARTURE_DATE));
+        bundle.putString(FlightTicketUtils.DEPARTURE_CITY_CODE, departureCity);
+        bundle.putString(FlightTicketUtils.ARRIVAL_CITY_CODE, arrivalCity);
+        bundle.putLong(FlightTicketUtils.DEPARTURE_DATE, departureDateMillis);
+        bundle.putBoolean(FlightTicketUtils.TICKET_CLASS, ticketClass);
+        bundle.putInt(FlightTicketUtils.ADULTS_NUM, adultsNum);
         FlightsDetailsFragment frag = new FlightsDetailsFragment();
         frag.setArguments(bundle);
         replaceFragment(frag, true);

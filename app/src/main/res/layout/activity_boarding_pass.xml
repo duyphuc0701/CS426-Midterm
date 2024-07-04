@@ -64,7 +64,7 @@
                     android:contentDescription="@string/boarding_pass_plane"/>
                 <!--Airways text -->
                 <TextView
-                    android:id="@+id/british_air"
+                    android:id="@+id/airways_flight_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/boarding_plane_image"
@@ -248,37 +248,6 @@
                             android:gravity="top" />
                     </RelativeLayout>
 
-                    <!--Ticket code field-->
-                    <RelativeLayout
-                        android:id="@+id/ticket_code_field"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@+id/boarding_time_field"
-                        android:layout_marginStart="40dp">
-
-                        <TextView
-                            android:id="@+id/ticket_code_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/ticket"
-                            android:textSize="10sp"
-                            android:textColor="@color/green_700"
-                            android:lineSpacingExtra="1sp"
-                            android:translationY="-0.5sp"
-                            android:gravity="top" />
-
-                        <TextView
-                            android:id="@+id/ticket_code_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/ticket_code_text"
-                            android:text="@string/nl_82_1"
-                            android:textSize="16sp"
-                            android:textColor="@color/text_primary"
-                            android:lineSpacingExtra="-2sp"
-                            android:gravity="top" />
-                    </RelativeLayout>
-
                 </RelativeLayout>
 
             </RelativeLayout>
@@ -363,13 +332,43 @@
                         android:gravity="top" />
                 </RelativeLayout>
 
+                <!--Ticket code field-->
+                <RelativeLayout
+                    android:id="@+id/ticket_code_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/passenger_class_field"
+                    android:layout_marginStart="40dp">
+
+                    <TextView
+                        android:id="@+id/ticket_code_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ticket"
+                        android:textSize="10sp"
+                        android:textColor="@color/green_700"
+                        android:lineSpacingExtra="1sp"
+                        android:translationY="-0.5sp"
+                        android:gravity="top" />
+
+                    <TextView
+                        android:id="@+id/ticket_code_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ticket_code_text"
+                        android:text="@string/nl_82_1"
+                        android:textSize="16sp"
+                        android:textColor="@color/text_primary"
+                        android:lineSpacingExtra="-2sp"
+                        android:gravity="top" />
+                </RelativeLayout>
+
                 <!--Seat field-->
                 <RelativeLayout
                     android:id="@+id/passenger_seat_field"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/passenger_class_field"
-                    android:layout_marginStart="40dp">
+                    android:layout_below="@+id/passenger_number_field">
 
                     <TextView
                         android:id="@+id/passenger_seat_text"

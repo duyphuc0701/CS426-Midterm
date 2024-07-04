@@ -113,4 +113,6 @@
     <string name="dollar_sign">$</string>
     <string name="fifty">50</string>
     <string name="_250">250</string>
+    <string name="_7D">7D</string>
+    <string name="_6D">6D</string>
 </resources>
