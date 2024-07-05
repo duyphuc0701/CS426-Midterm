@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/flights_filter_title"
+            android:textSize="17sp"
             android:fontFamily="@font/poppins_bold"
             android:textAppearance="@style/title" />
     </RelativeLayout>
@@ -246,8 +247,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/filter_price_text"
                     android:layout_marginTop="10dp"
-                    android:valueFrom="10"
-                    android:valueTo="300"
+                    android:valueFrom="0"
+                    android:valueTo="400"
                     app:tickColor="@color/green_500"
                     app:values="@array/filter_price_slider_values"
                     android:theme="@style/MyMaterialTheme"/>

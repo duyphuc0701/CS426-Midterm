@@ -10,6 +10,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.travelapplication.R;
 import com.example.travelapplication.databinding.FragmentFlightsFilterBinding;
@@ -17,12 +18,13 @@ import com.google.android.material.slider.RangeSlider;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class FlightsFilterFragment extends Fragment {
 
     FragmentFlightsFilterBinding binding;
-    ArrayList<Float> defaultPriceValues = new ArrayList<>();
+    Float[] defaultPriceValues;
     String defaultPriceFromValue = "50";
     String defaultPriceToValue = "250";
 
@@ -32,8 +34,9 @@ public class FlightsFilterFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        defaultPriceValues.add(50.0f);
-        defaultPriceValues.add(250.0f);
+        defaultPriceValues = new Float[2];
+        defaultPriceValues[0] = 50.0f;
+        defaultPriceValues[1] = 250.0f;
         super.onCreate(savedInstanceState);
     }
 
@@ -64,14 +67,12 @@ public class FlightsFilterFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (binding.filterPriceFromValue.length() == 0) {
-                    binding.filterPriceFromValue.setText("$");
-                }
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                updatePriceRangeSlider();
             }
         });
         binding.filterPriceToValue.addTextChangedListener(new TextWatcher() {
@@ -89,23 +90,32 @@ public class FlightsFilterFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                updatePriceRangeSlider();
             }
         });
     }
 
-    private void initPriceRangeSlider() {
-        binding.filterPriceSlider.addOnSliderTouchListener(new RangeSlider.OnSliderTouchListener() {
-            @Override
-            public void onStartTrackingTouch(@NonNull RangeSlider rangeSlider) {
+    private void updatePriceRangeSlider() {
+        try {
+            float minValue = Float.parseFloat(binding.filterPriceFromValue.getText().toString());
+            float maxValue = Float.parseFloat(binding.filterPriceToValue.getText().toString());
 
+            if (minValue <= maxValue && minValue >= binding.filterPriceSlider.getValueFrom() && maxValue <= binding.filterPriceSlider.getValueTo()) {
+                binding.filterPriceSlider.setValues(minValue, maxValue);
             }
+        } catch (NumberFormatException e) {
+            Toast.makeText(getActivity(), "Exception update range slider", Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    private void initPriceRangeSlider() {
+        binding.filterPriceSlider.addOnChangeListener(new RangeSlider.OnChangeListener() {
             @Override
-            public void onStopTrackingTouch(@NonNull RangeSlider rangeSlider) {
-                List<Float> newValues = rangeSlider.getValues();
-                binding.filterPriceFromValue.setText(String.valueOf(newValues.get(0)));
-                binding.filterPriceToValue.setText(String.valueOf(newValues.get(1)));
+            public void onValueChange(@NonNull RangeSlider rangeSlider, float v, boolean b) {
+                List<Float> sliderValues = binding.filterPriceSlider.getValues();
+                // Update the EditTexts with the formatted values
+                binding.filterPriceFromValue.setText(String.format(Locale.ENGLISH,"%.2f", sliderValues.get(0)));
+                binding.filterPriceToValue.setText(String.format(Locale.ENGLISH,"%.2f", sliderValues.get(1)));
             }
         });
     }

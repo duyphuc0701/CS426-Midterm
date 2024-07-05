@@ -83,6 +83,9 @@ public class SelectSeatActivity extends AppCompatActivity {
         // Set selected seat
         selectedAirplaneSeat = seatsAdapterA.getItem(1);
         setTravellerAndSeatText();
+        String seatCode = String.valueOf(selectedAirplaneSeat.getSeatRow())
+                + selectedAirplaneSeat.getSeatColumn();
+        travellerTabStringArray[0] = seatCode;
 
         // Init back button
         binding.selectSeatBackButton.setOnClickListener(v -> {

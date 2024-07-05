@@ -15,11 +15,11 @@ import com.example.travelapplication.databinding.ActivityMainBinding;
 import com.example.travelapplication.fragments.AccountFragment;
 import com.example.travelapplication.fragments.BookingFragment;
 import com.example.travelapplication.fragments.HomeFragment;
+import com.example.travelapplication.fragments.TransportBookingFragment;
+import com.example.travelapplication.utils.FlightTicketUtils;
 
 public class MainActivity extends AppCompatActivity {
-
     ActivityMainBinding binding;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,26 +32,32 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        replaceFragment(new HomeFragment(), true);
+        replaceFragment(new HomeFragment(), true, "HomeFragment");
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.home) {
-                replaceFragment(new HomeFragment(), false);
+                FlightTicketUtils.isSelectTransportBooking = false;
+                replaceFragment(new HomeFragment(), true, "HomeFragment");
             }
             else if (itemId == R.id.booking) {
-                replaceFragment(new BookingFragment(), true);
+                if(!FlightTicketUtils.isSelectTransportBooking)
+                    replaceFragment(new BookingFragment(), true, "BookingFragment");
+            }
+            else if (itemId == R.id.notify) {
+                FlightTicketUtils.isSelectTransportBooking = false;
             }
             else if (itemId == R.id.account) {
-                replaceFragment(new AccountFragment(), true);
+                FlightTicketUtils.isSelectTransportBooking = false;
+                replaceFragment(new AccountFragment(), true, "AccountFragment");
             }
             return true;
         });
     }
 
-    private void replaceFragment(Fragment fragment, boolean addToBackStack) {
+    private void replaceFragment(Fragment fragment, boolean addToBackStack, String tag) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.main_frame_layout, fragment);
+        fragmentTransaction.replace(R.id.main_frame_layout, fragment, tag);
         if(addToBackStack) {
             fragmentTransaction.addToBackStack(null);
         }

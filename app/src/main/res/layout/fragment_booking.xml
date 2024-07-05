@@ -15,7 +15,8 @@
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:text="@string/booking_screen_title" />
+        android:text="@string/booking_screen_title"
+        android:textSize="17sp"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -63,7 +64,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="200dp"/>
+                android:layout_height="50dp"/>
         </LinearLayout>
     </ScrollView>
 

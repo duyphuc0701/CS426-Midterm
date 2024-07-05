@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/select_seats"
+            android:textSize="17sp"
             android:fontFamily="@font/poppins_bold"
             android:textAppearance="@style/title" />
     </RelativeLayout>

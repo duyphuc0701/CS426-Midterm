@@ -115,4 +115,23 @@
     <string name="_250">250</string>
     <string name="_7D">7D</string>
     <string name="_6D">6D</string>
+    <string name="avatar">Avatar</string>
+    <string name="victoria_yo">Victoria Yoker</string>
+    <string name="personal_info">Personal Information</string>
+    <string name="payment_and_cards">Payment and Cards</string>
+    <string name="saved">Saved</string>
+    <string name="booking_history">Booking history</string>
+    <string name="settings">Settings</string>
+    <string name="end_session_icon">End session icon</string>
+    <string name="end_session">End session</string>
+    <string name="camera_button">Camera Button</string>
+    <string name="first_name">First name</string>
+    <string name="victoria">Victoria</string>
+    <string name="last_name">Last name</string>
+    <string name="yoker">Yoker</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="samplePhoneNumber">"+380 12 345 67 89 "</string>
+    <string name="sampleEmailAddress">victoria.yoker@gmail.com</string>
+    <string name="save_changes">Save changes</string>
 </resources>

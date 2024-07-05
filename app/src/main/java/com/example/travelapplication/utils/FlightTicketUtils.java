@@ -23,6 +23,7 @@ public class FlightTicketUtils {
     public static final String TICKET_CLASS = "ticketClass";
     public static final String SEAT_LIST = "seatCode";
     public static final String ADULTS_NUM = "adultsNum";
+    public static boolean isSelectTransportBooking = false;
     public static SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
     public static final HashMap<String, String> citiesLookup = new HashMap<>();
     public static final HashMap<Pair<Date, Pair<String, String>>, List<FlightTicket>> allFlights = new HashMap<>();
