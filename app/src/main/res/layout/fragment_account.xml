@@ -15,7 +15,9 @@
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:text="@string/account" />
+        android:text="@string/account"
+        android:textColor="@color/text_primary"
+        android:textSize="17sp"/>
 
     <ImageView
         android:id="@+id/avatar_imageView"
@@ -41,6 +43,7 @@
         android:lineSpacingExtra="0sp"
         android:gravity="center_horizontal|bottom" />
 
+    <!--Account options field -->
     <LinearLayout
         android:id="@+id/account_options"
         android:layout_width="wrap_content"
@@ -50,49 +53,154 @@
         android:layout_marginStart="10dp"
         android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/personal_info"
+        <!--Personal information option -->
+        <LinearLayout
+            android:id="@+id/personal_info_field"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/personal_information"
-            android:contentDescription="@string/personal_info"
-            android:background="@android:color/transparent"/>
+            android:orientation="horizontal"
+            android:layout_marginStart="10dp"
+            android:clickable="true"
+            android:focusable="true">
 
-        <ImageButton
-            android:id="@+id/payment_and_cards"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/payment_and_cards"
-            android:contentDescription="@string/payment_and_cards"
-            android:background="@android:color/transparent"/>
+            <ImageView
+                android:id="@+id/personal_info_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/personal_info_icon"
+                android:contentDescription="@string/personal_info"/>
 
-        <ImageButton
-            android:id="@+id/saved"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/saved"
-            android:contentDescription="@string/saved"
-            android:background="@android:color/transparent"/>
+            <TextView
+                android:id="@+id/personal_info_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/personal_info_text"
+                android:textSize="12sp"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/poppins_bold"/>
 
-        <ImageButton
-            android:id="@+id/booking_history"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/booking_history"
-            android:contentDescription="@string/booking_history"
-            android:background="@android:color/transparent"/>
+        </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/settings"
+        <!--Payment and cards option -->
+        <LinearLayout
+            android:id="@+id/payment_field"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/settings"
-            android:contentDescription="@string/settings"
-            android:background="@android:color/transparent"/>
+            android:orientation="horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/payment_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/payment_and_cards_icon"
+                android:contentDescription="@string/payment_and_cards"/>
+
+            <TextView
+                android:id="@+id/payment_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/payment_and_cards_text"
+                android:textSize="12sp"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/poppins_bold"/>
+
+        </LinearLayout>
+
+        <!--Saved option -->
+        <LinearLayout
+            android:id="@+id/saved_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/saved_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/saved_icon"
+                android:contentDescription="@string/saved"/>
+
+            <TextView
+                android:id="@+id/saved_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/saved"
+                android:textSize="12sp"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/poppins_bold"/>
+
+        </LinearLayout>
+
+        <!--Booking history option -->
+        <LinearLayout
+            android:id="@+id/booking_history_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/booking_history_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/booking_history_icon"
+                android:contentDescription="@string/payment_and_cards"/>
+
+            <TextView
+                android:id="@+id/booking_history_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/booking_history_text"
+                android:textSize="12sp"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/poppins_bold"/>
+
+        </LinearLayout>
+
+        <!--Settings option -->
+        <LinearLayout
+            android:id="@+id/settings_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/settings_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/settings_icon"
+                android:contentDescription="@string/settings"/>
+
+            <TextView
+                android:id="@+id/settings_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/settings"
+                android:textSize="12sp"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/poppins_bold"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

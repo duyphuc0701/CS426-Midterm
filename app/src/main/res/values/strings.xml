@@ -134,4 +134,10 @@
     <string name="samplePhoneNumber">"+380 12 345 67 89 "</string>
     <string name="sampleEmailAddress">victoria.yoker@gmail.com</string>
     <string name="save_changes">Save changes</string>
+    <string name="all">All</string>
+    <string name="fifty_decimal">50.00</string>
+    <string name="_250_decimal">250.00</string>
+    <string name="personal_info_text">Personal information</string>
+    <string name="payment_and_cards_text">Payment and cards</string>
+    <string name="booking_history_text">Booking history</string>
 </resources>

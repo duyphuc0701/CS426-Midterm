@@ -77,55 +77,60 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+                        <Button
+                            android:id="@+id/filter_departure_button_all"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/all"
+                            android:textSize="12sp"
+                            android:textColor="@color/white"
+                            android:gravity="center"
+                            android:fontFamily="@font/poppins_medium"
+                            android:background="@drawable/active_filter_time_button" />
 
-                        <ToggleButton
+                        <Button
                             android:id="@+id/filter_departure_button_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textOn="@string/_12am_06am"
-                            android:textOff="@string/_12am_06am"
+                            android:text="@string/_12am_06am"
                             android:textSize="12sp"
-                            android:textColor="@color/toggle_text"
+                            android:textColor="@color/green_500"
                             android:gravity="center"
                             android:fontFamily="@font/poppins_medium"
-                            android:background="@drawable/filter_time_toggle_button" />
+                            android:background="@drawable/normal_filter_time_button" />
 
-                        <ToggleButton
+                        <Button
                             android:id="@+id/filter_departure_button_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textOn="@string/_6am_12pm"
-                            android:textOff="@string/_6am_12pm"
+                            android:text="@string/_6am_12pm"
                             android:textSize="12sp"
-                            android:textColor="@color/toggle_text"
+                            android:textColor="@color/green_500"
                             android:gravity="center"
                             android:fontFamily="@font/poppins_medium"
-                            android:checked="true"
-                            android:background="@drawable/filter_time_toggle_button" />
+                            android:background="@drawable/normal_filter_time_button" />
 
-                        <ToggleButton
+                        <Button
                             android:id="@+id/filter_departure_button_3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textOn="@string/_12pm_6pm"
-                            android:textOff="@string/_12pm_6pm"
+                            android:text="@string/_12pm_6pm"
                             android:textSize="12sp"
-                            android:textColor="@color/toggle_text"
+                            android:textColor="@color/green_500"
                             android:gravity="center"
                             android:fontFamily="@font/poppins_medium"
-                            android:background="@drawable/filter_time_toggle_button" />
+                            android:background="@drawable/normal_filter_time_button" />
 
-                        <ToggleButton
+                        <Button
                             android:id="@+id/filter_departure_button_4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textOn="@string/_6pm_12am"
-                            android:textOff="@string/_6pm_12am"
+                            android:text="@string/_6pm_12am"
                             android:textSize="12sp"
-                            android:textColor="@color/toggle_text"
+                            android:textColor="@color/green_500"
                             android:gravity="center"
                             android:fontFamily="@font/poppins_medium"
-                            android:background="@drawable/filter_time_toggle_button" />
+                            android:background="@drawable/normal_filter_time_button" />
 
                     </LinearLayout>
                 </HorizontalScrollView>
@@ -166,54 +171,60 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <ToggleButton
+                        <Button
+                            android:id="@+id/filter_arrival_button_all"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/all"
+                            android:textSize="12sp"
+                            android:textColor="@color/white"
+                            android:gravity="center"
+                            android:fontFamily="@font/poppins_medium"
+                            android:background="@drawable/active_filter_time_button" />
+
+                        <Button
                             android:id="@+id/filter_arrival_button_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textOn="@string/_12am_06am"
-                            android:textOff="@string/_12am_06am"
+                            android:text="@string/_12am_06am"
                             android:textSize="12sp"
-                            android:textColor="@color/toggle_text"
+                            android:textColor="@color/green_500"
                             android:gravity="center"
                             android:fontFamily="@font/poppins_medium"
-                            android:checked="true"
-                            android:background="@drawable/filter_time_toggle_button" />
+                            android:background="@drawable/normal_filter_time_button" />
 
-                        <ToggleButton
+                        <Button
                             android:id="@+id/filter_arrival_button_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textOn="@string/_6am_12pm"
-                            android:textOff="@string/_6am_12pm"
+                            android:text="@string/_6am_12pm"
                             android:textSize="12sp"
-                            android:textColor="@color/toggle_text"
+                            android:textColor="@color/green_500"
                             android:gravity="center"
                             android:fontFamily="@font/poppins_medium"
-                            android:background="@drawable/filter_time_toggle_button" />
+                            android:background="@drawable/normal_filter_time_button" />
 
-                        <ToggleButton
+                        <Button
                             android:id="@+id/filter_arrival_button_3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textOn="@string/_12pm_6pm"
-                            android:textOff="@string/_12pm_6pm"
+                            android:text="@string/_12pm_6pm"
                             android:textSize="12sp"
-                            android:textColor="@color/toggle_text"
+                            android:textColor="@color/green_500"
                             android:gravity="center"
                             android:fontFamily="@font/poppins_medium"
-                            android:background="@drawable/filter_time_toggle_button" />
+                            android:background="@drawable/normal_filter_time_button" />
 
-                        <ToggleButton
+                        <Button
                             android:id="@+id/filter_arrival_button_4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textOn="@string/_6pm_12am"
-                            android:textOff="@string/_6pm_12am"
+                            android:text="@string/_6pm_12am"
                             android:textSize="12sp"
-                            android:textColor="@color/toggle_text"
+                            android:textColor="@color/green_500"
                             android:gravity="center"
                             android:fontFamily="@font/poppins_medium"
-                            android:background="@drawable/filter_time_toggle_button" />
+                            android:background="@drawable/normal_filter_time_button" />
 
                     </LinearLayout>
                 </HorizontalScrollView>
@@ -303,7 +314,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_toEndOf="@+id/price_from_dollar"
                                 android:inputType="number"
-                                android:text="@string/fifty"
+                                android:text="@string/fifty_decimal"
                                 android:textColor="@color/text_primary"
                                 android:textSize="16sp"
                                 android:fontFamily="@font/poppins_medium"
@@ -355,7 +366,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_toEndOf="@+id/price_to_dollar"
                                 android:inputType="number"
-                                android:text="@string/_250"
+                                android:text="@string/_250_decimal"
                                 android:textColor="@color/text_primary"
                                 android:textSize="16sp"
                                 android:fontFamily="@font/poppins_medium"

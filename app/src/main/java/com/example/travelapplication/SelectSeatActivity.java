@@ -54,12 +54,14 @@ public class SelectSeatActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Get intent and data from previous activity
         Intent intent1 = getIntent();
         FlightTicketUtils.FlightTicket selectedTicket =
                 (FlightTicketUtils.FlightTicket) intent1.getSerializableExtra(FlightTicketUtils.SELECTED_FLIGHT);
         boolean ticketClass = intent1.getBooleanExtra(FlightTicketUtils.TICKET_CLASS, false);
         int adultsNum = intent1.getIntExtra(FlightTicketUtils.ADULTS_NUM, -1);
 
+        // Init Total Price tẽt
         String seatPriceText = null;
         if (selectedTicket != null) {
             seatPriceText = String.format(Locale.ENGLISH, "$%.2f", (double) (selectedTicket.price * adultsNum));
@@ -94,6 +96,11 @@ public class SelectSeatActivity extends AppCompatActivity {
 
         // Init continue button
         binding.seatContinueButton.setOnClickListener(v -> {
+            // Last update for travellerTabStringArray
+            int currentTravellerIndex = travellerTabsAdapter.getSelectedIndex();
+            String newSeatCode = String.valueOf(selectedAirplaneSeat.getSeatRow())
+                                    + selectedAirplaneSeat.getSeatColumn();
+            travellerTabStringArray[currentTravellerIndex] = newSeatCode;
             // Change seatCode because need to pass multiple seats for multiple travellers
             Intent intent = new Intent(this, BoardingPassActivity.class);
             intent.putExtra(FlightTicketUtils.SELECTED_FLIGHT, selectedTicket);
@@ -300,6 +307,7 @@ public class SelectSeatActivity extends AppCompatActivity {
                             else {
                                 goBackToSelectedSeatOfNewTraveller(existingSeatCode);
                             }
+                            setTravellerAndSeatText();
                         }
                     }
                 }, 0
@@ -325,7 +333,7 @@ public class SelectSeatActivity extends AppCompatActivity {
         else if(column == 'D') {
             selectedAirplaneSeat = seatsAdapterD.getItem(row - 1);
         }
-        setTravellerAndSeatText();
+    
     }
 
     private void chooseSelectedSeatForNewTraveller() {
@@ -352,7 +360,6 @@ public class SelectSeatActivity extends AppCompatActivity {
             seatsAdapterD.setSelectedSeat(index);
             selectedAirplaneSeat = seatsAdapterD.getItem(index);
         }
-        setTravellerAndSeatText();
     }
 
     private void initTravellerTabList(int adultsNum) {

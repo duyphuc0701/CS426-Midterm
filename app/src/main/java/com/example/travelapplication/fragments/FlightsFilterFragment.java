@@ -3,6 +3,7 @@ package com.example.travelapplication.fragments;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
@@ -10,6 +11,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.travelapplication.R;
@@ -27,6 +29,8 @@ public class FlightsFilterFragment extends Fragment {
     Float[] defaultPriceValues;
     String defaultPriceFromValue = "50";
     String defaultPriceToValue = "250";
+    Button departureOptionCurrentButton;
+    Button arrivalOptionCurrentButton;
 
     public FlightsFilterFragment() {
         // Required empty public constructor
@@ -49,6 +53,9 @@ public class FlightsFilterFragment extends Fragment {
 
         initBackButton();
 
+        initDepartureField();
+        initArrivalField();
+
         initPriceRangeSlider();
         initPriceEditText();
 
@@ -56,6 +63,164 @@ public class FlightsFilterFragment extends Fragment {
         initDoneButton();
 
         return rootView;
+    }
+
+    private void initArrivalField() {
+        arrivalOptionCurrentButton = binding.filterDepartureButtonAll;
+        binding.filterArrivalButtonAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(arrivalOptionCurrentButton != binding.filterArrivalButtonAll) {
+                    // Change selected button
+                    binding.filterArrivalButtonAll.setBackgroundResource(R.drawable.active_filter_time_button);
+                    binding.filterArrivalButtonAll.setTextColor(ContextCompat.getColor(requireActivity(), R.color.white));
+                    // Change old button
+                    arrivalOptionCurrentButton.setBackgroundResource(R.drawable.normal_filter_time_button);
+                    arrivalOptionCurrentButton.setTextColor(ContextCompat.getColor(requireActivity(), R.color.green_500));
+                    // Update current button
+                    arrivalOptionCurrentButton = binding.filterArrivalButtonAll;
+                }
+            }
+        });
+        binding.filterArrivalButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(arrivalOptionCurrentButton != binding.filterArrivalButton1) {
+                    // Change selected button
+                    binding.filterArrivalButton1.setBackgroundResource(R.drawable.active_filter_time_button);
+                    binding.filterArrivalButton1.setTextColor(ContextCompat.getColor(requireActivity(), R.color.white));
+                    // Change old button
+                    arrivalOptionCurrentButton.setBackgroundResource(R.drawable.normal_filter_time_button);
+                    arrivalOptionCurrentButton.setTextColor(ContextCompat.getColor(requireActivity(), R.color.green_500));
+                    // Update current button
+                    arrivalOptionCurrentButton = binding.filterArrivalButton1;
+                }
+            }
+        });
+        binding.filterArrivalButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(arrivalOptionCurrentButton != binding.filterArrivalButton2) {
+                    // Change selected button
+                    binding.filterArrivalButton2.setBackgroundResource(R.drawable.active_filter_time_button);
+                    binding.filterArrivalButton2.setTextColor(ContextCompat.getColor(requireActivity(), R.color.white));
+                    // Change old button
+                    arrivalOptionCurrentButton.setBackgroundResource(R.drawable.normal_filter_time_button);
+                    arrivalOptionCurrentButton.setTextColor(ContextCompat.getColor(requireActivity(), R.color.green_500));
+                    // Update current button
+                    arrivalOptionCurrentButton = binding.filterArrivalButton2;
+                }
+            }
+        });
+        binding.filterArrivalButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(arrivalOptionCurrentButton != binding.filterArrivalButton3) {
+                    // Change selected button
+                    binding.filterArrivalButton3.setBackgroundResource(R.drawable.active_filter_time_button);
+                    binding.filterArrivalButton3.setTextColor(ContextCompat.getColor(requireActivity(), R.color.white));
+                    // Change old button
+                    arrivalOptionCurrentButton.setBackgroundResource(R.drawable.normal_filter_time_button);
+                    arrivalOptionCurrentButton.setTextColor(ContextCompat.getColor(requireActivity(), R.color.green_500));
+                    // Update current button
+                    arrivalOptionCurrentButton = binding.filterArrivalButton3;
+                }
+            }
+        });
+        binding.filterArrivalButton4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(arrivalOptionCurrentButton != binding.filterArrivalButton4) {
+                    // Change selected button
+                    binding.filterArrivalButton4.setBackgroundResource(R.drawable.active_filter_time_button);
+                    binding.filterArrivalButton4.setTextColor(ContextCompat.getColor(requireActivity(), R.color.white));
+                    // Change old button
+                    arrivalOptionCurrentButton.setBackgroundResource(R.drawable.normal_filter_time_button);
+                    arrivalOptionCurrentButton.setTextColor(ContextCompat.getColor(requireActivity(), R.color.green_500));
+                    // Update current button
+                    arrivalOptionCurrentButton = binding.filterArrivalButton4;
+                }
+            }
+        });
+    }
+
+    private void initDepartureField() {
+        departureOptionCurrentButton = binding.filterDepartureButtonAll;
+        binding.filterDepartureButtonAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(departureOptionCurrentButton != binding.filterDepartureButtonAll) {
+                    // Change selected button
+                    binding.filterDepartureButtonAll.setBackgroundResource(R.drawable.active_filter_time_button);
+                    binding.filterDepartureButtonAll.setTextColor(ContextCompat.getColor(requireActivity(), R.color.white));
+                    // Change old button
+                    departureOptionCurrentButton.setBackgroundResource(R.drawable.normal_filter_time_button);
+                    departureOptionCurrentButton.setTextColor(ContextCompat.getColor(requireActivity(), R.color.green_500));
+                    // Update current button
+                    departureOptionCurrentButton = binding.filterDepartureButtonAll;
+                }
+            }
+        });
+        binding.filterDepartureButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(departureOptionCurrentButton != binding.filterDepartureButton1) {
+                    // Change selected button
+                    binding.filterDepartureButton1.setBackgroundResource(R.drawable.active_filter_time_button);
+                    binding.filterDepartureButton1.setTextColor(ContextCompat.getColor(requireActivity(), R.color.white));
+                    // Change old button
+                    departureOptionCurrentButton.setBackgroundResource(R.drawable.normal_filter_time_button);
+                    departureOptionCurrentButton.setTextColor(ContextCompat.getColor(requireActivity(), R.color.green_500));
+                    // Update current button
+                    departureOptionCurrentButton = binding.filterDepartureButton1;
+                }
+            }
+        });
+        binding.filterDepartureButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(departureOptionCurrentButton != binding.filterDepartureButton2) {
+                    // Change selected button
+                    binding.filterDepartureButton2.setBackgroundResource(R.drawable.active_filter_time_button);
+                    binding.filterDepartureButton2.setTextColor(ContextCompat.getColor(requireActivity(), R.color.white));
+                    // Change old button
+                    departureOptionCurrentButton.setBackgroundResource(R.drawable.normal_filter_time_button);
+                    departureOptionCurrentButton.setTextColor(ContextCompat.getColor(requireActivity(), R.color.green_500));
+                    // Update current button
+                    departureOptionCurrentButton = binding.filterDepartureButton2;
+                }
+            }
+        });
+        binding.filterDepartureButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(departureOptionCurrentButton != binding.filterDepartureButton3) {
+                    // Change selected button
+                    binding.filterDepartureButton3.setBackgroundResource(R.drawable.active_filter_time_button);
+                    binding.filterDepartureButton3.setTextColor(ContextCompat.getColor(requireActivity(), R.color.white));
+                    // Change old button
+                    departureOptionCurrentButton.setBackgroundResource(R.drawable.normal_filter_time_button);
+                    departureOptionCurrentButton.setTextColor(ContextCompat.getColor(requireActivity(), R.color.green_500));
+                    // Update current button
+                    departureOptionCurrentButton = binding.filterDepartureButton3;
+                }
+            }
+        });
+        binding.filterDepartureButton4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(departureOptionCurrentButton != binding.filterDepartureButton4) {
+                    // Change selected button
+                    binding.filterDepartureButton4.setBackgroundResource(R.drawable.active_filter_time_button);
+                    binding.filterDepartureButton4.setTextColor(ContextCompat.getColor(requireActivity(), R.color.white));
+                    // Change old button
+                    departureOptionCurrentButton.setBackgroundResource(R.drawable.normal_filter_time_button);
+                    departureOptionCurrentButton.setTextColor(ContextCompat.getColor(requireActivity(), R.color.green_500));
+                    // Update current button
+                    departureOptionCurrentButton = binding.filterDepartureButton4;
+                }
+            }
+        });
     }
 
     private void initPriceEditText() {
@@ -125,15 +290,17 @@ public class FlightsFilterFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Reset departure buttons
-                binding.filterDepartureButton1.setChecked(false);
-                binding.filterDepartureButton2.setChecked(true);
-                binding.filterDepartureButton3.setChecked(false);
-                binding.filterDepartureButton4.setChecked(false);
+                binding.filterDepartureButtonAll.setBackgroundResource(R.drawable.active_filter_time_button);
+                binding.filterDepartureButtonAll.setTextColor(ContextCompat.getColor(requireActivity(), R.color.white));
+                departureOptionCurrentButton.setBackgroundResource(R.drawable.active_filter_time_button);
+                departureOptionCurrentButton.setTextColor(ContextCompat.getColor(requireActivity(), R.color.white));
+                departureOptionCurrentButton = binding.filterDepartureButtonAll;
                 // Reset arrival buttons
-                binding.filterArrivalButton1.setChecked(true);
-                binding.filterArrivalButton2.setChecked(false);
-                binding.filterArrivalButton3.setChecked(false);
-                binding.filterArrivalButton4.setChecked(false);
+                binding.filterArrivalButtonAll.setBackgroundResource(R.drawable.active_filter_time_button);
+                binding.filterArrivalButtonAll.setTextColor(ContextCompat.getColor(requireActivity(), R.color.white));
+                arrivalOptionCurrentButton.setBackgroundResource(R.drawable.active_filter_time_button);
+                arrivalOptionCurrentButton.setTextColor(ContextCompat.getColor(requireActivity(), R.color.white));
+                arrivalOptionCurrentButton = binding.filterArrivalButtonAll;
                 // Reset price RangeSlider and EditText
                 binding.filterPriceSlider.setValues(defaultPriceValues);
                 binding.filterPriceFromValue.setText(defaultPriceFromValue);

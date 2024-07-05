@@ -51,7 +51,7 @@ public class AccountFragment extends Fragment {
     }
 
     private void initSettingsSection() {
-        binding.settings.setOnClickListener(new View.OnClickListener() {
+        binding.settingsField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "This function will be developed", Toast.LENGTH_SHORT).show();
@@ -60,7 +60,7 @@ public class AccountFragment extends Fragment {
     }
 
     private void initBookingHistorySection() {
-        binding.bookingHistory.setOnClickListener(new View.OnClickListener() {
+        binding.bookingHistoryField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "This function will be developed", Toast.LENGTH_SHORT).show();
@@ -69,7 +69,7 @@ public class AccountFragment extends Fragment {
     }
 
     private void initSavedSection() {
-        binding.saved.setOnClickListener(new View.OnClickListener() {
+        binding.savedField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "This function will be developed", Toast.LENGTH_SHORT).show();
@@ -78,7 +78,7 @@ public class AccountFragment extends Fragment {
     }
 
     private void initPaymentAndCardsSection() {
-        binding.paymentAndCards.setOnClickListener(new View.OnClickListener() {
+        binding.paymentField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "This function will be developed", Toast.LENGTH_SHORT).show();
@@ -87,7 +87,7 @@ public class AccountFragment extends Fragment {
     }
 
     private void initPersonalInfoSection() {
-        binding.personalInfo.setOnClickListener(new View.OnClickListener() {
+        binding.personalInfoField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PersonalInfoFragment personalInfoFragment = new PersonalInfoFragment();

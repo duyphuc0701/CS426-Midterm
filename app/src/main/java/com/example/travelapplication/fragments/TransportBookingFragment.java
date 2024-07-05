@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,8 @@ import java.util.Map;
 
 public class TransportBookingFragment extends Fragment {
     FragmentTransportBookingBinding binding;
-    private final Calendar departureCalendar = Calendar.getInstance();
+    private Calendar departureCalendar = Calendar.getInstance();
+    private Calendar returnCalendar = Calendar.getInstance();
     private boolean isEconomyClass = false;
     public TransportBookingFragment() {
         // Required empty public constructor
@@ -108,19 +110,15 @@ public class TransportBookingFragment extends Fragment {
                 String arrivalCity = binding.toSpinner.getSelectedItem().toString();
                 departureCity = extractAirportCode(departureCity);
                 arrivalCity = extractAirportCode(arrivalCity);
-                Calendar departureDateCalendar = Calendar.getInstance();
                 String departureDateString = binding.departureDate.getText().toString();
                 int adultsNum = Integer.parseInt(binding.passengerNumEdit.getText().toString());
-                try {
-                    departureDateCalendar.setTime(FlightTicketUtils.dateFormat.parse(departureDateString));
-                } catch (ParseException e) {
-                    throw new RuntimeException(e);
-                }
+
+                Log.i("Check departure date", departureCalendar.toString());
                 // Go to FlightsDetailsActivity
                 Intent intent = new Intent(getActivity(), FlightsDetailsActivity.class);
                 intent.putExtra(FlightTicketUtils.DEPARTURE_CITY_CODE, departureCity);
                 intent.putExtra(FlightTicketUtils.ARRIVAL_CITY_CODE, arrivalCity);
-                intent.putExtra(FlightTicketUtils.DEPARTURE_DATE, departureDateCalendar.getTimeInMillis());
+                intent.putExtra(FlightTicketUtils.DEPARTURE_DATE, departureCalendar.getTimeInMillis());
                 intent.putExtra(FlightTicketUtils.TICKET_CLASS, isEconomyClass);
                 intent.putExtra(FlightTicketUtils.ADULTS_NUM, adultsNum);
                 startActivity(intent);
@@ -180,6 +178,7 @@ public class TransportBookingFragment extends Fragment {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                                departureCalendar.clear();
                                 departureCalendar.set(year, month, dayOfMonth); // month is zero-based in Calendar
 
                                 // Format the date
@@ -222,7 +221,7 @@ public class TransportBookingFragment extends Fragment {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                                 // Create a Calendar instance and set the date
-                                Calendar returnCalendar = Calendar.getInstance();
+                                returnCalendar.clear();
                                 returnCalendar.set(year, month, dayOfMonth); // month is zero-based in Calendar
 
                                 // Check if the return date is after the departure date
