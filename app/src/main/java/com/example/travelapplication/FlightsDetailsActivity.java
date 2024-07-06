@@ -49,27 +49,22 @@ public class FlightsDetailsActivity extends AppCompatActivity {
         String departureCityCode = intent.getStringExtra(FlightTicketUtils.DEPARTURE_CITY_CODE);
         String arrivalCityCode = intent.getStringExtra(FlightTicketUtils.ARRIVAL_CITY_CODE);
         long departureDateMillis = intent.getLongExtra(FlightTicketUtils.DEPARTURE_DATE, -1);
-        boolean ticketClass = intent.getBooleanExtra(FlightTicketUtils.TICKET_CLASS, false);
-        int adultsNum = intent.getIntExtra(FlightTicketUtils.ADULTS_NUM, -1);
 
         // Convert departureDate to format "DD/MM/YYYY"
         Calendar departureCalendar = Calendar.getInstance();
         departureCalendar.setTimeInMillis(departureDateMillis);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
         String departureDateString = sdf.format(departureCalendar.getTime());
-        Log.i("Check departureCity", departureCityCode);
-        Log.i("Check arrivalCity", arrivalCityCode);
-        Log.i("Check date", departureDateString);
         // Get matching tickets
         matchingFlights = searchForFlightsInDatabase(departureCityCode, arrivalCityCode,
                 departureDateString, departureCalendar);
 
-        // Pass matching tickets to fragment
+        // Pass matching tickets list and user input to fragment
         Bundle bundle = new Bundle();
+        bundle.putString(FlightTicketUtils.DEPARTURE_CITY_CODE, departureCityCode);
+        bundle.putString(FlightTicketUtils.ARRIVAL_CITY_CODE, arrivalCityCode);
+        bundle.putLong(FlightTicketUtils.DEPARTURE_DATE, departureDateMillis);
         bundle.putSerializable(FlightTicketUtils.MATCHING_FLIGHTS, (Serializable) matchingFlights);
-        // Pass other passenger info to fragment
-        bundle.putBoolean(FlightTicketUtils.TICKET_CLASS, ticketClass);
-        bundle.putInt(FlightTicketUtils.ADULTS_NUM, adultsNum);
         FlightsDetailsFragment frag = new FlightsDetailsFragment();
         frag.setArguments(bundle);
         replaceFragment(frag, true);

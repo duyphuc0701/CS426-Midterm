@@ -26,17 +26,23 @@ public class FlightsTable extends DatabaseTable {
     public void populateData(SQLiteDatabase db) {
         // NYC - LDN flights
         insertFlight(db, "NYC", "LDN", "10/07/2024",
-                420, 540, 30, "NL-10");
+                420, 540, 50, "NL-10");
         insertFlight(db, "NYC", "LDN", "10/07/2024",
-                450, 570, 40, "NL-11");
+                450, 570, 100, "NL-11");
         insertFlight(db, "NYC", "LDN", "10/07/2024",
                 480, 600, 35, "NL-12");
         insertFlight(db, "NYC", "LDN", "10/07/2024",
                 510, 630, 45, "NL-13");
         insertFlight(db, "NYC", "LDN", "10/07/2024",
-                540, 660, 50, "NL-14");
+                540, 660, 60, "NL-14");
         insertFlight(db, "NYC", "LDN", "10/07/2024",
-                570, 690, 55, "NL-15");
+                570, 690, 75, "NL-15");
+        insertFlight(db, "NYC", "LDN", "10/07/2024",
+                960, 1110, 300, "NL-16");
+        insertFlight(db, "NYC", "LDN", "10/07/2024",
+                1260, 1380, 55, "NL-17");
+        insertFlight(db, "NYC", "LDN", "10/07/2024",
+                780, 900, 150, "NL-18");
 
         // LDN - NYC flights
         insertFlight(db, "LDN", "NYC", "10/07/2024",

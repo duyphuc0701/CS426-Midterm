@@ -16,6 +16,7 @@ import java.util.Locale;
 import java.util.Random;
 
 public class FlightTicketUtils {
+    // String keys
     public static final String DEPARTURE_CITY_CODE = "departureCity";
     public static final String ARRIVAL_CITY_CODE = "arrivalCity";
     public static final String DEPARTURE_DATE = "departureDate";
@@ -24,7 +25,27 @@ public class FlightTicketUtils {
     public static final String SEAT_LIST = "seatCode";
     public static final String ADULTS_NUM = "adultsNum";
     public static final String MATCHING_FLIGHTS = "matchingFlights";
+    public static final String DEPARTURE_TIME = "departureTime";
+    public static final String ARRIVAL_TIME = "arrivalTime";
+    public static final String PRICE = "price";
+    public static final String DURATION = "duration";
+    public static final String DEPARTURE_FILTER = "departureFilter";
+    public static final String ARRIVAL_FILTER = "arrivalFilter";
+    public static final String MIN_PRICE_FILTER = "minPriceFilter";
+    public static final String MAX_PRICE_FILTER = "maxPriceFilter";
+    public static final String SORT_CRITERION_FILTER = "sortCriterion";
     public static boolean isSelectTransportBooking = false;
+    // Values for passenger info
+    public static boolean isEconomy = false;
+    public static int adultsNum = 1;
+
+    // Default values for filter
+    public static int departureOptionIndex = 0;
+    public static int arrivalOptionIndex = 0;
+    public static float priceFromFloat = 0.0f;
+    public static float priceToFloat = 400.0f;
+    public static String sortCriterion = "price";
+    // Date format
     public static SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
     public static final HashMap<String, String> citiesLookup = new HashMap<>();
 
@@ -33,78 +54,6 @@ public class FlightTicketUtils {
         citiesLookup.put("NYC", "New York");
         citiesLookup.put("LDN", "London");
 
-        // Initialize all flights
-
-    }
-
-    public static List<FlightTicket> generateDummyFlights(String fromLocationShort, String toLocationShort, Calendar departureCalendar) {
-        List<FlightTicket> flights = new ArrayList<>();
-        Random random = new Random();
-        int num_of_flights = 6;
-        int minPrice = 10;
-        int maxPrice = 100;
-        // Random times array (assuming 6 random times)
-        String[] times = generateRandomTimes(random, num_of_flights);
-
-        // Random prices array (ranging from 10 to 100)
-        int[] prices = generateRandomPrices(random, num_of_flights, minPrice, maxPrice);
-
-        // Random flight numbers array (assuming 6 random flight numbers)
-        String[] flightNumbers = generateRandomFlightNumbers(random, num_of_flights);
-
-        for (int i = 0; i < times.length; i++) {
-            flights.add(new FlightTicket(
-                    fromLocationShort,
-                    citiesLookup.get(fromLocationShort),
-                    toLocationShort,
-                    citiesLookup.get(toLocationShort),
-                    departureCalendar.getTime(),
-                    times[i],
-                    prices[i],
-                    flightNumbers[i]
-            ));
-        }
-
-        return flights;
-    }
-
-    private static String[] generateRandomTimes(Random random, int count) {
-        String[] times = new String[count];
-        String[] meridians = {"AM", "PM"};
-
-        for (int i = 0; i < count; i++) {
-            int hour = random.nextInt(12) + 1; // 1 to 12
-            int minute = random.nextInt(60); // 0 to 59
-            String meridian = meridians[random.nextInt(2)]; // AM or PM
-            times[i] = String.format("%02d:%02d %s", hour, minute, meridian);
-        }
-
-        return times;
-    }
-
-    private static int[] generateRandomPrices(Random random, int count, int minPrice, int maxPrice) {
-        int[] prices = new int[count];
-
-        for (int i = 0; i < count; i++) {
-            prices[i] = random.nextInt(maxPrice - minPrice + 1) + minPrice;
-        }
-
-        return prices;
-    }
-
-    private static String[] generateRandomFlightNumbers(Random random, int count) {
-        String[] flightNumbers = new String[count];
-
-        for (int i = 0; i < count; i++) {
-            String sb = String.valueOf(
-                    (char) (random.nextInt(26) + 'A')) + // First letter
-                    (char) (random.nextInt(26) + 'A') + // Second letter
-                    "-" +
-                    random.nextInt(100); // Random number (up to 999)
-            flightNumbers[i] = sb;
-        }
-
-        return flightNumbers;
     }
 
     public static class FlightTicket implements Serializable {

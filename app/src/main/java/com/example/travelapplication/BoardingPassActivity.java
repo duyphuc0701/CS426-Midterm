@@ -36,8 +36,6 @@ public class BoardingPassActivity extends AppCompatActivity {
         Intent intent = getIntent();
         FlightTicketUtils.FlightTicket selectedTicket =
                 (FlightTicketUtils.FlightTicket) intent.getSerializableExtra(FlightTicketUtils.SELECTED_FLIGHT);
-        boolean isEconomy = intent.getBooleanExtra(FlightTicketUtils.TICKET_CLASS, false);
-        int adultsNum = intent.getIntExtra(FlightTicketUtils.ADULTS_NUM, -1);
         String[] seatCodeList = intent.getStringArrayExtra(FlightTicketUtils.SEAT_LIST);
         if(selectedTicket != null) {
             binding.airwaysFlightNumber.setText("British Airways Flight " + selectedTicket.flightNumber);
@@ -50,10 +48,11 @@ public class BoardingPassActivity extends AppCompatActivity {
             String departureDateFormatted = boardingDateFormat.format(selectedTicket.departureDate);
             binding.boardingDateValue.setText(departureDateFormatted);
 
-            String ticketClassText = isEconomy ? "Economy" : "Business";
+            String ticketClassText = FlightTicketUtils.isEconomy ? "Economy" : "Business";
             binding.passengerClassValue.setText(ticketClassText);
 
-            String adultString = adultsNum + " " + (adultsNum == 1 ? "Adult" : "Adults");
+            String adultString = FlightTicketUtils.adultsNum + " " +
+                    (FlightTicketUtils.adultsNum == 1 ? "Adult" : "Adults");
             binding.passengerNumberValue.setText(adultString);
 
             // Use StringBuilder for efficient concatenation

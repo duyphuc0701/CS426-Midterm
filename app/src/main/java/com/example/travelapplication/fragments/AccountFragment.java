@@ -2,6 +2,9 @@ package com.example.travelapplication.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -102,8 +105,15 @@ public class AccountFragment extends Fragment {
     private void loadUserData() {
         SharedPreferences preferences = requireActivity().getSharedPreferences(UserPreferences.PREFS_NAME, Context.MODE_PRIVATE);
 
+        // Load the user's name
         String firstName = preferences.getString(UserPreferences.KEY_FIRST_NAME, getResources().getString(R.string.victoria));
         String lastName = preferences.getString(UserPreferences.KEY_LAST_NAME, getResources().getString(R.string.yoker));
         binding.accountName.setText(String.format("%s %s", firstName, lastName));
+        // Retrieve the saved image path and set it to the ImageView
+        String imagePath = preferences.getString(UserPreferences.KEY_IMAGE_PATH, null);
+        if (imagePath != null) {
+            Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+            binding.avatarImageView.setImageBitmap(bitmap);
+        }
     }
 }

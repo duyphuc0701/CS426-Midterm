@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="filter_price_slider_values">
-        <item>50.0f</item>
-        <item>250.0f</item>
+        <item>0.0f</item>
+        <item>400.0f</item>
     </array>
 </resources>

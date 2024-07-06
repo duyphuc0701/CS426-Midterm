@@ -106,21 +106,21 @@ public class TransportBookingFragment extends Fragment {
                 Toast.makeText(getActivity(), "Passenger & Luggage is not completed", Toast.LENGTH_SHORT).show();
             }
             else {
+                // Get selected city from user
                 String departureCity = binding.fromSpinner.getSelectedItem().toString();
                 String arrivalCity = binding.toSpinner.getSelectedItem().toString();
+                // Extract city code only
                 departureCity = extractAirportCode(departureCity);
                 arrivalCity = extractAirportCode(arrivalCity);
-                String departureDateString = binding.departureDate.getText().toString();
-                int adultsNum = Integer.parseInt(binding.passengerNumEdit.getText().toString());
-
-                Log.i("Check departure date", departureCalendar.toString());
-                // Go to FlightsDetailsActivity
+                // Store number of adults
+                FlightTicketUtils.adultsNum = Integer.parseInt(binding.passengerNumEdit.getText().toString());
+                // Store ticket class boolean (isEconomy)
+                FlightTicketUtils.isEconomy = isEconomyClass;
+                // Move to FlightsDetailsActivity
                 Intent intent = new Intent(getActivity(), FlightsDetailsActivity.class);
                 intent.putExtra(FlightTicketUtils.DEPARTURE_CITY_CODE, departureCity);
                 intent.putExtra(FlightTicketUtils.ARRIVAL_CITY_CODE, arrivalCity);
                 intent.putExtra(FlightTicketUtils.DEPARTURE_DATE, departureCalendar.getTimeInMillis());
-                intent.putExtra(FlightTicketUtils.TICKET_CLASS, isEconomyClass);
-                intent.putExtra(FlightTicketUtils.ADULTS_NUM, adultsNum);
                 startActivity(intent);
             }
         });

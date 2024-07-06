@@ -20,7 +20,6 @@ import com.example.travelapplication.utils.AirplaneSeat;
 import com.example.travelapplication.utils.FlightTicketUtils;
 import com.example.travelapplication.utils.TravellerTab;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -56,32 +55,29 @@ public class SelectSeatActivity extends AppCompatActivity {
 
         // Get intent and data from previous activity
         Intent intent1 = getIntent();
+        // Get selected tickett
         FlightTicketUtils.FlightTicket selectedTicket =
-                (FlightTicketUtils.FlightTicket) intent1.getSerializableExtra(FlightTicketUtils.SELECTED_FLIGHT);
-        boolean ticketClass = intent1.getBooleanExtra(FlightTicketUtils.TICKET_CLASS, false);
-        int adultsNum = intent1.getIntExtra(FlightTicketUtils.ADULTS_NUM, -1);
+                (FlightTicketUtils.FlightTicket)
+                        intent1.getSerializableExtra(FlightTicketUtils.SELECTED_FLIGHT);
 
-        // Init Total Price tẽt
+        // Init Total Price text
         String seatPriceText = null;
         if (selectedTicket != null) {
-            seatPriceText = String.format(Locale.ENGLISH, "$%.2f", (double) (selectedTicket.price * adultsNum));
+            seatPriceText = String.format(Locale.ENGLISH, "$%.2f",
+                    (double) (selectedTicket.price * FlightTicketUtils.adultsNum));
         }
         // Init price of the seat
         binding.seatPriceValue.setText(seatPriceText);
 
-        // Init Traveller Tabs
-        initTravellerTabList(adultsNum);
+        // Init Traveller Tabs, TravellerTabArray and Selected seat
         initTravellerTabsReyclerView();
 
         // Init Seats
-        initSeatListA();
         initSeatRecyclerViewA();
-        initSeatListB();
         initSeatRecyclerViewB();
-        initSeatListC();
         initSeatRecyclerViewC();
-        initSeatListD();
         initSeatRecyclerViewD();
+
         // Set selected seat
         selectedAirplaneSeat = seatsAdapterA.getItem(1);
         setTravellerAndSeatText();
@@ -90,28 +86,54 @@ public class SelectSeatActivity extends AppCompatActivity {
         travellerTabStringArray[0] = seatCode;
 
         // Init back button
-        binding.selectSeatBackButton.setOnClickListener(v -> {
-            finish();
-        });
+        initBackButton();
 
         // Init continue button
+        initContinueButton(selectedTicket);
+    }
+
+    private void initContinueButton(FlightTicketUtils.FlightTicket selectedTicket) {
         binding.seatContinueButton.setOnClickListener(v -> {
             // Last update for travellerTabStringArray
             int currentTravellerIndex = travellerTabsAdapter.getSelectedIndex();
             String newSeatCode = String.valueOf(selectedAirplaneSeat.getSeatRow())
-                                    + selectedAirplaneSeat.getSeatColumn();
+                    + selectedAirplaneSeat.getSeatColumn();
             travellerTabStringArray[currentTravellerIndex] = newSeatCode;
             // Change seatCode because need to pass multiple seats for multiple travellers
             Intent intent = new Intent(this, BoardingPassActivity.class);
             intent.putExtra(FlightTicketUtils.SELECTED_FLIGHT, selectedTicket);
-            intent.putExtra(FlightTicketUtils.TICKET_CLASS, ticketClass);
-            intent.putExtra(FlightTicketUtils.ADULTS_NUM, adultsNum);
             intent.putExtra(FlightTicketUtils.SEAT_LIST, travellerTabStringArray);
             startActivity(intent);
         });
     }
 
+    private void initBackButton() {
+        binding.selectSeatBackButton.setOnClickListener(v -> {
+            finish();
+        });
+    }
+
+    private void changeSelectedSeatToAvailable() {
+        int row = selectedAirplaneSeat.getSeatRow();
+        char column = selectedAirplaneSeat.getSeatColumn();
+        if(column == 'A') {
+            seatsAdapterA.setSeatToAvailable(row - 1);
+        }
+        else if(column == 'B') {
+            seatsAdapterB.setSeatToAvailable(row - 1);
+        }
+        else if(column == 'C') {
+            seatsAdapterC.setSeatToAvailable(row - 1);
+        }
+        else if(column == 'D') {
+            seatsAdapterD.setSeatToAvailable(row - 1);
+        }
+    }
+
     private void initSeatRecyclerViewD() {
+        // Init data
+        initSeatListD();
+        // Init adapter
         seatsAdapterD = new AirplaneSeatsAdapter(
                 seatListD,
                 new AirplaneSeatsAdapter.OnItemClickListener() {
@@ -139,23 +161,6 @@ public class SelectSeatActivity extends AppCompatActivity {
         binding.dSeatsRecyclerView.setAdapter(seatsAdapterD);
     }
 
-    private void changeSelectedSeatToAvailable() {
-        int row = selectedAirplaneSeat.getSeatRow();
-        char column = selectedAirplaneSeat.getSeatColumn();
-        if(column == 'A') {
-            seatsAdapterA.setSeatToAvailable(row - 1);
-        }
-        else if(column == 'B') {
-            seatsAdapterB.setSeatToAvailable(row - 1);
-        }
-        else if(column == 'C') {
-            seatsAdapterC.setSeatToAvailable(row - 1);
-        }
-        else if(column == 'D') {
-            seatsAdapterD.setSeatToAvailable(row - 1);
-        }
-    }
-
     private void initSeatListD() {
         seatListD = new ArrayList<>();
         seatListD.add(new AirplaneSeat(1, 'D', R.drawable.booked_seat));
@@ -168,6 +173,9 @@ public class SelectSeatActivity extends AppCompatActivity {
     }
 
     private void initSeatRecyclerViewC() {
+        // Init data
+        initSeatListC();
+        // Init adapter
         seatsAdapterC = new AirplaneSeatsAdapter(
                 seatListC,
                 new AirplaneSeatsAdapter.OnItemClickListener() {
@@ -207,6 +215,9 @@ public class SelectSeatActivity extends AppCompatActivity {
     }
 
     private void initSeatRecyclerViewB() {
+        // Init data
+        initSeatListB();
+        // Init adapter
         seatsAdapterB = new AirplaneSeatsAdapter(
                 seatListB,
                 new AirplaneSeatsAdapter.OnItemClickListener() {
@@ -246,6 +257,9 @@ public class SelectSeatActivity extends AppCompatActivity {
     }
 
     private void initSeatRecyclerViewA() {
+        // Init data
+        initSeatListA();
+        // Init adapter
         seatsAdapterA = new AirplaneSeatsAdapter(
                 seatListA,
                 new AirplaneSeatsAdapter.OnItemClickListener() {
@@ -284,7 +298,20 @@ public class SelectSeatActivity extends AppCompatActivity {
         seatListA.add(new AirplaneSeat(7, 'A', R.drawable.avail_seat));
     }
 
+    private void initTravellerTabList() {
+        travellerTabStringArray = new String[FlightTicketUtils.adultsNum];
+        travellerTabList = new ArrayList<>();
+        for(int i = 0; i < FlightTicketUtils.adultsNum; i++) {
+            TravellerTab travellerTab = new TravellerTab(i+1, i == 0);
+            travellerTabList.add(travellerTab);
+            travellerTabStringArray[i] = "";
+        }
+    }
+
     private void initTravellerTabsReyclerView() {
+        // Init data
+        initTravellerTabList();
+        // Init adapter
         travellerTabsAdapter = new TravellerTabsAdapter(
                 travellerTabList,
                 new TravellerTabsAdapter.OnItemClickListener() {
@@ -307,12 +334,14 @@ public class SelectSeatActivity extends AppCompatActivity {
                             else {
                                 goBackToSelectedSeatOfNewTraveller(existingSeatCode);
                             }
+                            // Update action text for new traveller
                             setTravellerAndSeatText();
                         }
                     }
                 }, 0
         );
-        binding.travellerTabsRecyclerView.setLayoutManager(new LinearLayoutManager(
+        binding.travellerTabsRecyclerView.setLayoutManager(
+                new LinearLayoutManager(
                 SelectSeatActivity.this,
                 LinearLayoutManager.HORIZONTAL, false));
         binding.travellerTabsRecyclerView.setAdapter(travellerTabsAdapter);
@@ -359,16 +388,6 @@ public class SelectSeatActivity extends AppCompatActivity {
         if(index != -1) {
             seatsAdapterD.setSelectedSeat(index);
             selectedAirplaneSeat = seatsAdapterD.getItem(index);
-        }
-    }
-
-    private void initTravellerTabList(int adultsNum) {
-        travellerTabStringArray = new String[adultsNum];
-        travellerTabList = new ArrayList<>();
-        for(int i = 0; i < adultsNum; i++) {
-            travellerTabStringArray[i] = "";
-            TravellerTab travellerTab = new TravellerTab(i+1, i == 0);
-            travellerTabList.add(travellerTab);
         }
     }
 

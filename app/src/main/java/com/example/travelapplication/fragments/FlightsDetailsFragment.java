@@ -59,19 +59,16 @@ public class FlightsDetailsFragment extends Fragment {
         // Get list of matching tickets
         flightsList = (List<FlightTicketUtils.FlightTicket>)
                 bundle.getSerializable(FlightTicketUtils.MATCHING_FLIGHTS);
-        // Get other passenger info
-        boolean ticketClass = bundle.getBoolean(FlightTicketUtils.TICKET_CLASS);
-        int adultsNum = bundle.getInt(FlightTicketUtils.ADULTS_NUM);
-
-        // Get necessary info
-        String departureCityCode = null;
-        String arrivalCityCode = null;
+        // Get info about the user input
+        String departureCityCode = bundle.getString(FlightTicketUtils.DEPARTURE_CITY_CODE);
+        String arrivalCityCode = bundle.getString(FlightTicketUtils.ARRIVAL_CITY_CODE);
+        long departureDateMillis = bundle.getLong(FlightTicketUtils.DEPARTURE_DATE);
         Calendar departureCalendar = Calendar.getInstance();
+        departureCalendar.setTimeInMillis(departureDateMillis);
+
+        // Check whether the flights list is empty or not
         int flightsListSize = 0;
         if (flightsList != null) {
-            departureCityCode = flightsList.get(0).fromLocationShort;
-            arrivalCityCode = flightsList.get(0).toLocationShort;
-            departureCalendar.setTime(flightsList.get(0).departureDate);
             flightsListSize = flightsList.size();
         }
         // Set available flights text
@@ -81,12 +78,13 @@ public class FlightsDetailsFragment extends Fragment {
         initDateTabsRecyclerView(departureCityCode, arrivalCityCode, departureCalendar);
 
         // Init flights tickets recyclerView
-        initFlightsTicketsRecyclerView(departureCityCode, arrivalCityCode,
-                departureCalendar, ticketClass, adultsNum);
+        initFlightsTicketsRecyclerView();
 
+        // Init back button
         initBackButton();
 
-        initFilterImageButton();
+        // Init filter image button
+        initFilterImageButton(departureCityCode, arrivalCityCode, departureDateMillis);
 
         return rootView;
     }
@@ -112,11 +110,21 @@ public class FlightsDetailsFragment extends Fragment {
         });
     }
 
-    private void initFilterImageButton() {
+    private void initFilterImageButton(String departureCityCode, String arrivalCityCode, long departureDateMillis) {
         binding.filterImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                // Pass user input information
+                bundle.putString(FlightTicketUtils.DEPARTURE_CITY_CODE, departureCityCode);
+                bundle.putString(FlightTicketUtils.ARRIVAL_CITY_CODE, arrivalCityCode);
+                bundle.putLong(FlightTicketUtils.DEPARTURE_DATE, departureDateMillis);
+
+                // Set arguments for new fragment
                 FlightsFilterFragment flightsFilter = new FlightsFilterFragment();
+                flightsFilter.setArguments(bundle);
+
+                // Replace with new fragment
                 FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.flightsDetailsFrameLayout, flightsFilter);
                 ft.addToBackStack(null);
@@ -148,6 +156,7 @@ public class FlightsDetailsFragment extends Fragment {
                         // Get the flights list corresponding to the date
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
                         String departureDateString = sdf.format(departureCalendar.getTime());
+                        // IMPORTANT: Get new flights list from database
                         List<FlightTicketUtils.FlightTicket> newFlightsList = searchForFlightsInDatabase(departureCityCode,
                                 arrivalCityCode, departureDateString, departureCalendar);
                         // Update available flights text
@@ -161,8 +170,7 @@ public class FlightsDetailsFragment extends Fragment {
         binding.dateTabsRecyclerView.setAdapter(dateTabsAdapter);
     }
 
-    private void initFlightsTicketsRecyclerView(String departureCityCode, String arrivalCityCode,
-                                                Calendar departureCalendar, boolean ticketClass, int adultsNum) {
+    private void initFlightsTicketsRecyclerView() {
         flightTicketsAdapter =
                 new FlightTicketsAdapter(
                         flightsList,
@@ -171,8 +179,6 @@ public class FlightsDetailsFragment extends Fragment {
                             public void onItemClick(FlightTicketUtils.FlightTicket item) {
                                 Intent intent = new Intent(getActivity(), SelectSeatActivity.class);
                                 intent.putExtra(FlightTicketUtils.SELECTED_FLIGHT, item);
-                                intent.putExtra(FlightTicketUtils.TICKET_CLASS, ticketClass);
-                                intent.putExtra(FlightTicketUtils.ADULTS_NUM, adultsNum);
                                 startActivity(intent);
                             }
                         });
