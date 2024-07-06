@@ -128,6 +128,7 @@ public class FlightsDetailsFragment extends Fragment {
                 FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.flightsDetailsFrameLayout, flightsFilter);
                 ft.addToBackStack(null);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_MATCH_ACTIVITY_OPEN);
                 ft.commit();
             }
         });

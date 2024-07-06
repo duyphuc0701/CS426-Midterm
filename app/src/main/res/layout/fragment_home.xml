@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
     tools:context=".fragments.HomeFragment">
 
     <!--Home title -->
@@ -38,6 +40,8 @@
             android:fontFamily="@font/poppins_medium"
             android:layout_centerVertical="true"
             android:paddingStart="12dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:importantForAutofill="no"
             android:inputType="text"
             android:background="@drawable/search_bar"
@@ -45,6 +49,7 @@
             tools:ignore="RtlSymmetry" />
 
         <ImageButton
+            android:id="@+id/searchButtonHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/searchEditText"

@@ -1,5 +1,6 @@
 package com.example.travelapplication.fragments;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -35,7 +36,28 @@ public class HomeFragment extends Fragment {
 
         initServicesButton();
 
+        initSearchButton();
+
         return rootView;
+    }
+
+    private void initSearchButton() {
+        binding.searchButtonHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String searchString = binding.searchEditText.getText().toString();
+                if(!searchString.isEmpty())
+                    showSearchDialog(searchString);
+            }
+        });
+    }
+
+    private void showSearchDialog(String searchString) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Search Result");
+        builder.setMessage(searchString);
+        builder.setPositiveButton("Got it", null);
+        builder.show();
     }
 
     private void initServicesButton() {

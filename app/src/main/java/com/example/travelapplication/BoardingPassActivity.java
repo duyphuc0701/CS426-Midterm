@@ -1,8 +1,15 @@
 package com.example.travelapplication;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -14,6 +21,9 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.travelapplication.databinding.ActivityBoardingPassBinding;
 import com.example.travelapplication.utils.FlightTicketUtils;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
@@ -33,9 +43,12 @@ public class BoardingPassActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Get intent
         Intent intent = getIntent();
+        // Get selected ticket
         FlightTicketUtils.FlightTicket selectedTicket =
                 (FlightTicketUtils.FlightTicket) intent.getSerializableExtra(FlightTicketUtils.SELECTED_FLIGHT);
+        // Get seats of passengers
         String[] seatCodeList = intent.getStringArrayExtra(FlightTicketUtils.SEAT_LIST);
         if(selectedTicket != null) {
             binding.airwaysFlightNumber.setText("British Airways Flight " + selectedTicket.flightNumber);
@@ -59,7 +72,23 @@ public class BoardingPassActivity extends AppCompatActivity {
             String passengerSeatsString = getSeatsString(seatCodeList);
             binding.passengerSeatValue.setText(passengerSeatsString);
         }
+        // Init download ticket button
+        initDownloadTicketButton();
+        // Init back button
+        initBackButton();
+    }
 
+    private void initDownloadTicketButton() {
+        binding.boardingDownloadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(BoardingPassActivity.this,
+                        "Download ticket successfully!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void initBackButton() {
         binding.boardingBackButton.setOnClickListener(v -> finish());
     }
 
@@ -78,4 +107,5 @@ public class BoardingPassActivity extends AppCompatActivity {
         // Convert StringBuilder to String
         return stringBuilder.toString();
     }
+
 }

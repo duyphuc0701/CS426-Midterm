@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         if(addToBackStack) {
             fragmentTransaction.addToBackStack(null);
         }
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_MATCH_ACTIVITY_OPEN);
         fragmentTransaction.commit();
     }
 }
