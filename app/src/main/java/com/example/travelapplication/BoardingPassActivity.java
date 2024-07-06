@@ -51,24 +51,29 @@ public class BoardingPassActivity extends AppCompatActivity {
         // Get seats of passengers
         String[] seatCodeList = intent.getStringArrayExtra(FlightTicketUtils.SEAT_LIST);
         if(selectedTicket != null) {
+            // Set text of the flight
             binding.airwaysFlightNumber.setText("British Airways Flight " + selectedTicket.flightNumber);
+            // Set text of cities
             binding.boardingFromLocationShort.setText(selectedTicket.fromLocationShort);
             binding.boardingFromLocationFull.setText(selectedTicket.fromLocationFull);
             binding.boardingToLocationShort.setText(selectedTicket.toLocationShort);
             binding.boardingToLocationFull.setText(selectedTicket.toLocationFull);
 
+            // Set text of departure date
             SimpleDateFormat boardingDateFormat = new SimpleDateFormat("dd MMM", Locale.US);
             String departureDateFormatted = boardingDateFormat.format(selectedTicket.departureDate);
             binding.boardingDateValue.setText(departureDateFormatted);
 
+            // Set text of class
             String ticketClassText = FlightTicketUtils.isEconomy ? "Economy" : "Business";
             binding.passengerClassValue.setText(ticketClassText);
 
+            // Set text of number of adults
             String adultString = FlightTicketUtils.adultsNum + " " +
                     (FlightTicketUtils.adultsNum == 1 ? "Adult" : "Adults");
             binding.passengerNumberValue.setText(adultString);
 
-            // Use StringBuilder for efficient concatenation
+            // Use StringBuilder for efficient concatenation, display list of seats
             String passengerSeatsString = getSeatsString(seatCodeList);
             binding.passengerSeatValue.setText(passengerSeatsString);
         }
@@ -76,6 +81,20 @@ public class BoardingPassActivity extends AppCompatActivity {
         initDownloadTicketButton();
         // Init back button
         initBackButton();
+        // Init home button
+        initHomeButton();
+    }
+
+    private void initHomeButton() {
+        binding.boardingHomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BoardingPassActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void initDownloadTicketButton() {
