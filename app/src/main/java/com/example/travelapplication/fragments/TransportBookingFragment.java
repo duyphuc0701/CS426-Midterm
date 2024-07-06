@@ -62,20 +62,26 @@ public class TransportBookingFragment extends Fragment {
             }
         });
 
+        // Find bottom navigation (dangerous)
         BottomNavigationView bottomNavigationView = (BottomNavigationView) activity.findViewById(R.id.bottomNavigationView);
 
         bottomNavigationView.setSelectedItemId(R.id.booking);
 
+        // Init Search button
         initTicketSearchButton();
 
+        // Init Departure city and Arrival City field
         initFromToSpinners();
         initLocationsSwitchButton();
 
+        // Init Departure and Return date field
         initDepartureDateField();
         initReturnDateField();
 
+        // Init Class buttons
         initClassButtons();
 
+        // Init Transport buttons
         initTransportButtons();
 
         return rootView;
@@ -160,6 +166,7 @@ public class TransportBookingFragment extends Fragment {
 
         // Set the formatted date to the TextView
         binding.departureDate.setText(defaultDate);
+        // Set on click listener
         binding.departureDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -200,10 +207,13 @@ public class TransportBookingFragment extends Fragment {
 
     private void initReturnDateField() {
         // Format the date
-        String defaultDate = FlightTicketUtils.dateFormat.format(departureCalendar.getTime());
+        returnCalendar.add(Calendar.DAY_OF_MONTH, 30);
+        String defaultDate = FlightTicketUtils.dateFormat
+                .format(returnCalendar.getTime());
 
         // Set the formatted date to the TextView
         binding.returnDate.setText(defaultDate);
+        // Set on click listener
         binding.returnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

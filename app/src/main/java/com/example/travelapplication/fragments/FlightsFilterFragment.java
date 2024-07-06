@@ -630,7 +630,7 @@ public class FlightsFilterFragment extends Fragment {
         if(addToBackStack) {
             fragmentTransaction.addToBackStack(null);
         }
-        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_MATCH_ACTIVITY_OPEN);
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragmentTransaction.commit();
     }
 

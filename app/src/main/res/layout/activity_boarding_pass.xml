@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="5dp"
             android:contentDescription="@string/back_button_app_bar"
             android:backgroundTint="@color/screen"
             android:src="@drawable/ic_home"/>

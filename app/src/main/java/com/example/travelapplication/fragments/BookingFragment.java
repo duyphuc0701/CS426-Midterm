@@ -55,6 +55,7 @@ public class BookingFragment extends Fragment {
                 FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.main_frame_layout, transportBookingFragment);
                 ft.addToBackStack(null);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 ft.commit();
             }
         });

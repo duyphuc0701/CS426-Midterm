@@ -93,18 +93,37 @@ public class SelectSeatActivity extends AppCompatActivity {
     }
 
     private void initContinueButton(FlightTicketUtils.FlightTicket selectedTicket) {
+        // Set on click listener
         binding.seatContinueButton.setOnClickListener(v -> {
-            // Last update for travellerTabStringArray
+            // Update for current traveller in travellerTabStringArray
             int currentTravellerIndex = travellerTabsAdapter.getSelectedIndex();
             String newSeatCode = String.valueOf(selectedAirplaneSeat.getSeatRow())
                     + selectedAirplaneSeat.getSeatColumn();
             travellerTabStringArray[currentTravellerIndex] = newSeatCode;
-            // Change seatCode because need to pass multiple seats for multiple travellers
-            Intent intent = new Intent(this, BoardingPassActivity.class);
-            intent.putExtra(FlightTicketUtils.SELECTED_FLIGHT, selectedTicket);
-            intent.putExtra(FlightTicketUtils.SEAT_LIST, travellerTabStringArray);
-            startActivity(intent);
+            // Check if the user has select seats for all travellers
+            boolean finishSelect = isSelectSeatsForAllTravellers();
+            if(!finishSelect) {
+                Toast.makeText(this,
+                        "Please select seat all travellers", Toast.LENGTH_SHORT).show();
+            } else {
+                // Move to Boarding pass
+                Intent intent = new Intent(this, BoardingPassActivity.class);
+                intent.putExtra(FlightTicketUtils.SELECTED_FLIGHT, selectedTicket);
+                intent.putExtra(FlightTicketUtils.SEAT_LIST, travellerTabStringArray);
+                startActivity(intent);
+            }
         });
+    }
+
+    private boolean isSelectSeatsForAllTravellers() {
+        boolean result = true;
+        for(String travellerSeatString: travellerTabStringArray) {
+            if(travellerSeatString.isEmpty()) {
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 
     private void initBackButton() {

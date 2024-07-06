@@ -1,14 +1,10 @@
 package com.example.travelapplication;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
+
 import android.view.View;
-import android.widget.RelativeLayout;
+
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -21,11 +17,9 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.travelapplication.databinding.ActivityBoardingPassBinding;
 import com.example.travelapplication.utils.FlightTicketUtils;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import java.util.Random;
 
 public class BoardingPassActivity extends AppCompatActivity {
 
@@ -72,6 +66,18 @@ public class BoardingPassActivity extends AppCompatActivity {
             String adultString = FlightTicketUtils.adultsNum + " " +
                     (FlightTicketUtils.adultsNum == 1 ? "Adult" : "Adults");
             binding.passengerNumberValue.setText(adultString);
+
+            // Set text of boarding pass number
+            char firstLetter = selectedTicket.fromLocationShort.charAt(0);
+            char secondLetter = selectedTicket.toLocationShort.charAt(0);
+            Random random = new Random();
+            int twoDigitNumber = 10 + random.nextInt(90);
+            int singleDigitNumber = random.nextInt(10);
+            String boardingPassNumber =
+                    String.format(Locale.ENGLISH,"%c%c%d-%d",
+                            firstLetter, secondLetter,
+                            twoDigitNumber, singleDigitNumber);
+            binding.ticketCodeValue.setText(boardingPassNumber);
 
             // Use StringBuilder for efficient concatenation, display list of seats
             String passengerSeatsString = getSeatsString(seatCodeList);
