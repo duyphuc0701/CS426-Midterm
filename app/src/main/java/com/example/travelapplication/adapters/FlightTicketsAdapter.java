@@ -70,7 +70,7 @@ public class FlightTicketsAdapter extends
     @NonNull
     @Override
     public FlightTicketsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.flight_ticket_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ticket_item, parent, false);
         return new ViewHolder(view);
     }
 
