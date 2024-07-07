@@ -416,27 +416,23 @@
                 android:layout_marginTop="15dp"
                 android:src="@drawable/boarding_barcode"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_below="@+id/boarding_barcode"/>
+            <!--Download ticket button -->
+            <Button
+                android:id="@+id/boarding_download_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/boarding_barcode"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="30dp"
+                android:layout_centerHorizontal="true"
+                android:text="@string/download_ticket"
+                android:textColor="@color/white"
+                android:fontFamily="@font/poppins_bold"
+                android:textAllCaps="false"
+                android:gravity="center"
+                android:background="@drawable/ticket_search_button"/>
 
         </RelativeLayout>
     </ScrollView>
-
-    <!--Download ticket button -->
-    <Button
-        android:id="@+id/boarding_download_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
-        android:layout_centerHorizontal="true"
-        android:text="@string/download_ticket"
-        android:textColor="@color/white"
-        android:fontFamily="@font/poppins_bold"
-        android:textAllCaps="false"
-        android:gravity="center"
-        android:background="@drawable/ticket_search_button"/>
 
 </RelativeLayout>
