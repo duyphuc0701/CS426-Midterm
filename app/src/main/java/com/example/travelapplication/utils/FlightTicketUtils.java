@@ -42,8 +42,8 @@ public class FlightTicketUtils {
     // Default values for filter
     public static int departureOptionIndex = 0;
     public static int arrivalOptionIndex = 0;
-    public static float priceFromFloat = 0.0f;
-    public static float priceToFloat = 400.0f;
+    public static int priceFromValue = 0;
+    public static int priceToValue = 400;
     public static String sortCriterion = "price";
     // Date format
     public static SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);

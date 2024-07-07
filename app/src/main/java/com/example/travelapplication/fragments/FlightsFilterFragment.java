@@ -50,6 +50,7 @@ public class FlightsFilterFragment extends Fragment {
     Calendar departureCalendar = Calendar.getInstance();
     String departureDateString = null;
 
+    boolean isEditPriceText = false;
     public FlightsFilterFragment() {
         // Required empty public constructor
     }
@@ -316,7 +317,7 @@ public class FlightsFilterFragment extends Fragment {
         initPriceRangeSlider();
     }
 
-    private void setPriceRadioGroupBasedOnSortCriterion() {
+    private void setRadioGroupBasedOnSortCriterion() {
         if(FlightTicketUtils.sortCriterion.equals(FlightTicketUtils.ARRIVAL_TIME)) {
             binding.filterSortRadioGroup.check(R.id.filter_arrivalTime_radioButton);
         }
@@ -333,7 +334,7 @@ public class FlightsFilterFragment extends Fragment {
 
     private void initPriceEditText() {
         // Set default value
-        binding.filterPriceFromValue.setText(String.format(Locale.ENGLISH,"%.2f", FlightTicketUtils.priceFromFloat));
+        binding.filterPriceFromValue.setText(Integer.toString(FlightTicketUtils.priceFromValue));
         // Set text changed listener
         binding.filterPriceFromValue.addTextChangedListener(new TextWatcher() {
             @Override
@@ -352,7 +353,7 @@ public class FlightsFilterFragment extends Fragment {
             }
         });
         // Set default value
-        binding.filterPriceToValue.setText(String.format(Locale.ENGLISH,"%.2f", FlightTicketUtils.priceToFloat));
+        binding.filterPriceToValue.setText(Integer.toString(FlightTicketUtils.priceToValue));
         // Set text changed listener
         binding.filterPriceToValue.addTextChangedListener(new TextWatcher() {
             @Override
@@ -373,29 +374,43 @@ public class FlightsFilterFragment extends Fragment {
     }
 
     private void updatePriceRangeSlider() {
-        try {
-            float minValue = Float.parseFloat(binding.filterPriceFromValue.getText().toString());
-            float maxValue = Float.parseFloat(binding.filterPriceToValue.getText().toString());
+        String minValueString = binding.filterPriceFromValue.getText().toString();
+        String maxValueString = binding.filterPriceToValue.getText().toString();
+        int minValue = 0;
+        if(!minValueString.isEmpty()) {
+            minValue = Integer.parseInt(minValueString);
+        }
+        int maxValue = 0;
+        if(!maxValueString.isEmpty()) {
+            maxValue = Integer.parseInt(maxValueString);
+        }
 
-            if (minValue <= maxValue && minValue >= binding.filterPriceSlider.getValueFrom() && maxValue <= binding.filterPriceSlider.getValueTo()) {
-                binding.filterPriceSlider.setValues(minValue, maxValue);
-            }
-        } catch (NumberFormatException e) {
-            Toast.makeText(getActivity(), "Exception update range slider", Toast.LENGTH_SHORT).show();
+        float minValueFloat = (float) minValue;
+        float maxValueFloat = (float) maxValue;
+
+        if (minValue <= maxValue &&
+                minValueFloat >= binding.filterPriceSlider.getValueFrom() &&
+                maxValueFloat <= binding.filterPriceSlider.getValueTo()) {
+
+            binding.filterPriceSlider.setValues((float) minValue, (float) maxValue);
         }
     }
 
     private void initPriceRangeSlider() {
         // Set default value
-        binding.filterPriceSlider.setValues(FlightTicketUtils.priceFromFloat, FlightTicketUtils.priceToFloat);
+        binding.filterPriceSlider.setValues((float) FlightTicketUtils.priceFromValue, (float) FlightTicketUtils.priceToValue);
         // Set on change listener
-        binding.filterPriceSlider.addOnChangeListener(new RangeSlider.OnChangeListener() {
+        binding.filterPriceSlider.addOnSliderTouchListener(new RangeSlider.OnSliderTouchListener() {
             @Override
-            public void onValueChange(@NonNull RangeSlider rangeSlider, float v, boolean b) {
+            public void onStartTrackingTouch(@NonNull RangeSlider rangeSlider) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(@NonNull RangeSlider rangeSlider) {
                 List<Float> sliderValues = binding.filterPriceSlider.getValues();
-                // Update the EditTexts with the formatted values
-                binding.filterPriceFromValue.setText(String.format(Locale.ENGLISH,"%.2f", sliderValues.get(0)));
-                binding.filterPriceToValue.setText(String.format(Locale.ENGLISH,"%.2f", sliderValues.get(1)));
+                binding.filterPriceFromValue.setText(Integer.toString(sliderValues.get(0).intValue()));
+                binding.filterPriceToValue.setText(Integer.toString(sliderValues.get(1).intValue()));
             }
         });
     }
@@ -403,7 +418,7 @@ public class FlightsFilterFragment extends Fragment {
     private void initSortField() {
         // Set the default value
         sortCriterion = FlightTicketUtils.sortCriterion;
-        setPriceRadioGroupBasedOnSortCriterion();
+        setRadioGroupBasedOnSortCriterion();
         // Set on check listener
         binding.filterSortRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -481,20 +496,17 @@ public class FlightsFilterFragment extends Fragment {
                 bundle.putLong(FlightTicketUtils.DEPARTURE_DATE, departureCalendar.getTimeInMillis());
                 // Pass the new flights list to the fragment
                 bundle.putSerializable(FlightTicketUtils.MATCHING_FLIGHTS, (Serializable) filteredFlightsList);
-                // Pass filter conditions to the fragment as well
-                bundle.putInt(FlightTicketUtils.DEPARTURE_FILTER, getDepartureOptionIndex());
-                bundle.putInt(FlightTicketUtils.ARRIVAL_FILTER, getArrivalOptionIndex());
-                bundle.putFloat(FlightTicketUtils.MIN_PRICE_FILTER, priceValues.get(0).floatValue());
-                bundle.putFloat(FlightTicketUtils.MAX_PRICE_FILTER, priceValues.get(1).floatValue());
-                bundle.putString(FlightTicketUtils.SORT_CRITERION_FILTER, sortCriterion);
+
                 // Save the variables based on current filter
                 FlightTicketUtils.departureOptionIndex = getDepartureOptionIndex();
                 FlightTicketUtils.arrivalOptionIndex = getArrivalOptionIndex();
-                FlightTicketUtils.priceFromFloat = priceValues.get(0);
-                FlightTicketUtils.priceToFloat = priceValues.get(1);
+                FlightTicketUtils.priceFromValue = priceValues.get(0).intValue();
+                FlightTicketUtils.priceToValue = priceValues.get(1).intValue();
                 FlightTicketUtils.sortCriterion = sortCriterion;
+
                 // Display message for user
                 Toast.makeText(getActivity(), "Filter successfully!", Toast.LENGTH_SHORT).show();
+
                 // Replace with new FlightsDetailsFragment and set arguments
                 FlightsDetailsFragment frag = new FlightsDetailsFragment();
                 frag.setArguments(bundle);

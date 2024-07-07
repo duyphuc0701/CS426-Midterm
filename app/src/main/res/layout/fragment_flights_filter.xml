@@ -252,6 +252,7 @@
                     android:layout_marginStart="20dp"
                     android:gravity="top" />
 
+                <!--Price slider -->
                 <com.google.android.material.slider.RangeSlider
                     android:id="@+id/filter_price_slider"
                     android:layout_width="match_parent"
@@ -314,7 +315,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_toEndOf="@+id/price_from_dollar"
                                 android:inputType="number"
-                                android:text="@string/fifty_decimal"
+                                android:text="@string/fifty"
                                 android:textColor="@color/text_primary"
                                 android:textSize="16sp"
                                 android:fontFamily="@font/poppins_medium"
@@ -366,7 +367,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_toEndOf="@+id/price_to_dollar"
                                 android:inputType="number"
-                                android:text="@string/_250_decimal"
+                                android:text="@string/_250"
                                 android:textColor="@color/text_primary"
                                 android:textSize="16sp"
                                 android:fontFamily="@font/poppins_medium"
