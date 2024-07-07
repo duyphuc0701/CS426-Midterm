@@ -13,7 +13,6 @@ import androidx.sqlite.SQLiteException;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +25,6 @@ import com.example.travelapplication.TravelDatabaseHelper;
 import com.example.travelapplication.databinding.FragmentFlightsFilterBinding;
 import com.example.travelapplication.utils.FlightTicketUtils;
 import com.google.android.material.slider.RangeSlider;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -39,9 +37,6 @@ import java.util.Locale;
 public class FlightsFilterFragment extends Fragment {
 
     FragmentFlightsFilterBinding binding;
-    Float[] defaultPriceValues;
-    String defaultPriceFromString = "0.00";
-    String defaultPriceToString = "400.00";
     Button departureOptionCurrentButton;
     Button arrivalOptionCurrentButton;
     String sortCriterion = null;
@@ -49,22 +44,17 @@ public class FlightsFilterFragment extends Fragment {
     String arrivalCityCode = null;
     Calendar departureCalendar = Calendar.getInstance();
     String departureDateString = null;
-
-    boolean isEditPriceText = false;
     public FlightsFilterFragment() {
         // Required empty public constructor
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        defaultPriceValues = new Float[2];
-        defaultPriceValues[0] = 50.0f;
-        defaultPriceValues[1] = 250.0f;
         super.onCreate(savedInstanceState);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentFlightsFilterBinding.inflate(inflater, container, false);
@@ -318,17 +308,19 @@ public class FlightsFilterFragment extends Fragment {
     }
 
     private void setRadioGroupBasedOnSortCriterion() {
-        if(FlightTicketUtils.sortCriterion.equals(FlightTicketUtils.ARRIVAL_TIME)) {
-            binding.filterSortRadioGroup.check(R.id.filter_arrivalTime_radioButton);
-        }
-        else if(FlightTicketUtils.sortCriterion.equals(FlightTicketUtils.PRICE)) {
-            binding.filterSortRadioGroup.check(R.id.filter_price_radioButton);
-        }
-        else if(FlightTicketUtils.sortCriterion.equals(FlightTicketUtils.DEPARTURE_TIME)) {
-            binding.filterSortRadioGroup.check(R.id.filter_departureTime_radioButton);
-        }
-        else if(FlightTicketUtils.sortCriterion.equals(FlightTicketUtils.DURATION)) {
-            binding.filterSortRadioGroup.check(R.id.filter_duration_radioButton);
+        switch (FlightTicketUtils.sortCriterion) {
+            case FlightTicketUtils.ARRIVAL_TIME:
+                binding.filterSortRadioGroup.check(R.id.filter_arrivalTime_radioButton);
+                break;
+            case FlightTicketUtils.PRICE:
+                binding.filterSortRadioGroup.check(R.id.filter_price_radioButton);
+                break;
+            case FlightTicketUtils.DEPARTURE_TIME:
+                binding.filterSortRadioGroup.check(R.id.filter_departureTime_radioButton);
+                break;
+            case FlightTicketUtils.DURATION:
+                binding.filterSortRadioGroup.check(R.id.filter_duration_radioButton);
+                break;
         }
     }
 
@@ -443,6 +435,12 @@ public class FlightsFilterFragment extends Fragment {
         binding.filterResetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Reset variables
+                FlightTicketUtils.departureOptionIndex = 0;
+                FlightTicketUtils.arrivalOptionIndex = 0;
+                FlightTicketUtils.priceFromValue = 0;
+                FlightTicketUtils.priceToValue = 400;
+                FlightTicketUtils.sortCriterion = "price";
                 // Reset departure buttons
                 if(departureOptionCurrentButton != binding.filterDepartureButtonAll) {
                     binding.filterDepartureButtonAll.setBackgroundResource(R.drawable.active_filter_time_button);
@@ -461,9 +459,11 @@ public class FlightsFilterFragment extends Fragment {
                     arrivalOptionCurrentButton = binding.filterArrivalButtonAll;
                 }
                 // Reset price RangeSlider and EditText
-                binding.filterPriceSlider.setValues(defaultPriceValues);
-                binding.filterPriceFromValue.setText(defaultPriceFromString);
-                binding.filterPriceToValue.setText(defaultPriceToString);
+                binding.filterPriceFromValue.setText(Integer.toString(FlightTicketUtils.priceFromValue));
+                binding.filterPriceToValue.setText(Integer.toString(FlightTicketUtils.priceToValue));
+                binding.filterPriceSlider.setValues(
+                        (float)FlightTicketUtils.priceFromValue,
+                        (float)FlightTicketUtils.priceToValue);
                 // Reset Sort RadioGroup
                 binding.filterSortRadioGroup.check(R.id.filter_price_radioButton);
                 // Display message for user
