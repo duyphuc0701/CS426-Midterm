@@ -10,11 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.sqlite.SQLiteException;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.travelapplication.R;
 import com.example.travelapplication.SelectSeatActivity;
@@ -189,39 +191,49 @@ public class FlightsDetailsFragment extends Fragment {
         binding.flightsTicketsRecyclerView.setAdapter(flightTicketsAdapter);
     }
 
-    private ArrayList<FlightTicketUtils.FlightTicket> searchForFlightsInDatabase(String departureCity,
-                                                                                 String arrivalCity,
+    private ArrayList<FlightTicketUtils.FlightTicket> searchForFlightsInDatabase(String departureCityCode,
+                                                                                 String arrivalCityCode,
                                                                                  String departureDate,
                                                                                  Calendar departureCalendar) {
-        TravelDatabaseHelper travelDatabaseHelper = new TravelDatabaseHelper(getActivity());
-        SQLiteDatabase db = travelDatabaseHelper.getReadableDatabase();
-        Cursor cursor = db.query(TravelDatabaseHelper.TABLE_FLIGHTS,
-                new String[]{"departureTime", "price", "number"},
-                "departureCity = ? AND arrivalCity = ? AND departureDate = ?",
-                new String[]{departureCity, arrivalCity, departureDate},
-                null, null, "price ASC");
         ArrayList<FlightTicketUtils.FlightTicket> result = new ArrayList<>();
-        if(cursor != null) {
-            while(cursor.moveToNext()) {
+        TravelDatabaseHelper travelDatabaseHelper = new TravelDatabaseHelper(requireActivity());
+        SQLiteDatabase db;
+        Cursor cursor;
+        try {
+            db = travelDatabaseHelper.getReadableDatabase();
+            cursor = db.query(TravelDatabaseHelper.TABLE_FLIGHTS,
+                    new String[]{"departureTime", "price", "number", "brand"},
+                    "departureCity = ? AND arrivalCity = ? AND departureDate = ?",
+                    new String[]{departureCityCode, arrivalCityCode, departureDate},
+                    null, null, "price ASC");
+            for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
                 int departureTimeMinutes = cursor.getInt(0);
                 String departureTime = TravelDatabaseHelper.convertMinutesToTimeString(departureTimeMinutes);
                 int price = cursor.getInt(1);
                 String flightNumber = cursor.getString(2);
+                String brand = cursor.getString(3);
                 FlightTicketUtils.FlightTicket ticket =
                         new FlightTicketUtils.FlightTicket(
-                                departureCity,
-                                FlightTicketUtils.citiesLookup.get(departureCity),
-                                arrivalCity,
-                                FlightTicketUtils.citiesLookup.get(arrivalCity),
+                                departureCityCode,
+                                FlightTicketUtils.citiesLookup.get(departureCityCode),
+                                arrivalCityCode,
+                                FlightTicketUtils.citiesLookup.get(arrivalCityCode),
                                 departureCalendar.getTime(),
                                 departureTime,
                                 price,
-                                flightNumber);
+                                flightNumber,
+                                brand);
+                Log.i("departureTime", departureTime);
+                Log.i("price", Integer.toString(price));
+                Log.i("flightNumber", flightNumber);
                 result.add(ticket);
             }
+            cursor.close();
+            db.close();
+        } catch(SQLiteException e) {
+            Toast toast = Toast.makeText(getActivity(), "Database unavailable", Toast.LENGTH_SHORT);
+            toast.show();
         }
-        db.close();
-        cursor.close();
         return result;
     }
 }

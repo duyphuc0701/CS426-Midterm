@@ -65,8 +65,9 @@ public class FlightTicketUtils {
         public final String departureTime;
         public final int price;
         public final String flightNumber;
+        public final String brand;
 
-        public FlightTicket(String fromLocationShort, String fromLocationFull, String toLocationShort, String toLocationFull, Date departureDate, String departureTime, int price, String flightNumber) {
+        public FlightTicket(String fromLocationShort, String fromLocationFull, String toLocationShort, String toLocationFull, Date departureDate, String departureTime, int price, String flightNumber, String brand) {
             this.fromLocationShort = fromLocationShort;
             this.fromLocationFull = fromLocationFull;
             this.toLocationShort = toLocationShort;
@@ -75,6 +76,7 @@ public class FlightTicketUtils {
             this.departureTime = departureTime;
             this.price = price;
             this.flightNumber = flightNumber;
+            this.brand = brand;
         }
     }
 }

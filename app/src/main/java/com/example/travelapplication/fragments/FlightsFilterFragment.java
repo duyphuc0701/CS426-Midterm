@@ -662,7 +662,7 @@ public class FlightsFilterFragment extends Fragment {
                     Integer.toString(toPriceValue)};
             String orderByCondition = sortCriterion + " ASC";
             if(sortCriterion.equals("duration")) {
-                String sql = "SELECT departureTime, price, number, " +
+                String sql = "SELECT departureTime, price, number, brand, " +
                         "(arrivalTime - departureTime) AS duration " +
                         "FROM " + TravelDatabaseHelper.TABLE_FLIGHTS +
                         " WHERE " + selectCondition +
@@ -671,7 +671,7 @@ public class FlightsFilterFragment extends Fragment {
             }
             else {
                 cursor = db.query(TravelDatabaseHelper.TABLE_FLIGHTS,
-                        new String[]{"departureTime", "price", "number"},
+                        new String[]{"departureTime", "price", "number", "brand"},
                         selectCondition,
                         selectArgs,
                         null, null, orderByCondition);
@@ -682,6 +682,7 @@ public class FlightsFilterFragment extends Fragment {
                 String departureTime = TravelDatabaseHelper.convertMinutesToTimeString(departureTimeMinutes);
                 int price = cursor.getInt(1);
                 String flightNumber = cursor.getString(2);
+                String brand = cursor.getString(3);
                 FlightTicketUtils.FlightTicket ticket =
                         new FlightTicketUtils.FlightTicket(
                                 departureCityCode,
@@ -691,11 +692,12 @@ public class FlightsFilterFragment extends Fragment {
                                 departureCalendar.getTime(),
                                 departureTime,
                                 price,
-                                flightNumber);
+                                flightNumber,
+                                brand);
                 result.add(ticket);
             }
-            db.close();
             cursor.close();
+            db.close();
         } catch(SQLiteException e) {
             Toast toast = Toast.makeText(getActivity(), "Database unavailable", Toast.LENGTH_SHORT);
             toast.show();

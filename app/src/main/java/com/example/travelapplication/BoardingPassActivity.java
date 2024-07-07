@@ -46,7 +46,8 @@ public class BoardingPassActivity extends AppCompatActivity {
         String[] seatCodeList = intent.getStringArrayExtra(FlightTicketUtils.SEAT_LIST);
         if(selectedTicket != null) {
             // Set text of the flight
-            binding.airwaysFlightNumber.setText("British Airways Flight " + selectedTicket.flightNumber);
+            String brandAndNumberString = selectedTicket.brand + " " + selectedTicket.flightNumber;
+            binding.airwaysFlightNumber.setText(brandAndNumberString);
             // Set text of cities
             binding.boardingFromLocationShort.setText(selectedTicket.fromLocationShort);
             binding.boardingFromLocationFull.setText(selectedTicket.fromLocationFull);

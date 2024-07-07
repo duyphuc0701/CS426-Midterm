@@ -2,7 +2,6 @@ package com.example.travelapplication.fragments;
 
 import android.content.Context;
 import android.content.ContextWrapper;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,10 +11,10 @@ import android.os.Bundle;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,15 +26,14 @@ import com.example.travelapplication.databinding.FragmentPersonalInfoBinding;
 import com.example.travelapplication.utils.UserPreferences;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.util.Objects;
 
 public class PersonalInfoFragment extends Fragment {
     FragmentPersonalInfoBinding binding;
     private ActivityResultLauncher<String> mGetContent;
-    String currentImagePath = null;
+    Uri currentImageUri;
     public PersonalInfoFragment() {
         // Required empty public constructor
     }
@@ -46,7 +44,7 @@ public class PersonalInfoFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentPersonalInfoBinding.inflate(inflater, container, false);
@@ -72,17 +70,11 @@ public class PersonalInfoFragment extends Fragment {
                     @Override
                     public void onActivityResult(Uri o) {
                         if(o != null) {
-                            try {
-                                InputStream inputStream =
-                                        getActivity().getContentResolver()
-                                                .openInputStream(o);
-                                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                                String imagePath = saveToInternalStorage(bitmap);
-                                binding.personalInfoAvatarImage.setImageBitmap(bitmap);
-                                currentImagePath = imagePath;
-                            } catch (IOException e) {
-                                Log.e("IO error", "Cannot set image - get content");
-                            }
+                            binding.personalInfoAvatarImage.setImageURI(o);
+                            Toast.makeText(getActivity(),
+                                    "Upload image successfully!",
+                                    Toast.LENGTH_SHORT).show();
+                            currentImageUri = o;
                         }
                     }
                 });
@@ -127,9 +119,18 @@ public class PersonalInfoFragment extends Fragment {
                 String lastName = binding.lastNameEdit.getText().toString();
                 String phone = binding.phoneEdit.getText().toString();
                 String email = binding.emailEdit.getText().toString();
-                // Save user data using SharedPreferences
-                UserPreferences.saveUserData(activity, firstName,
-                        lastName, phone, email, currentImagePath);
+                // Save the profile image
+                try {
+                    InputStream inputStream = requireActivity().getContentResolver()
+                            .openInputStream(currentImageUri);
+                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                    String currentImagePath = saveToInternalStorage(bitmap);
+                    // Save user data using SharedPreferences
+                    UserPreferences.saveUserData(activity, firstName,
+                            lastName, phone, email, currentImagePath);
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
                 // Display message for user
                 Toast.makeText(activity, "Save changes successfully!", Toast.LENGTH_SHORT).show();
                 // Go back to AccountFragment

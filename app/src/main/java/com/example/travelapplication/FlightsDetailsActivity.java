@@ -55,7 +55,7 @@ public class FlightsDetailsActivity extends AppCompatActivity {
         departureCalendar.setTimeInMillis(departureDateMillis);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
         String departureDateString = sdf.format(departureCalendar.getTime());
-        // Get matching tickets
+        // Get matching tickets from database
         matchingFlights = searchForFlightsInDatabase(departureCityCode, arrivalCityCode,
                 departureDateString, departureCalendar);
 
@@ -81,7 +81,7 @@ public class FlightsDetailsActivity extends AppCompatActivity {
         try {
             db = travelDatabaseHelper.getReadableDatabase();
             cursor = db.query(TravelDatabaseHelper.TABLE_FLIGHTS,
-                    new String[]{"departureTime", "price", "number"},
+                    new String[]{"departureTime", "price", "number", "brand"},
                     "departureCity = ? AND arrivalCity = ? AND departureDate = ?",
                     new String[]{departureCityCode, arrivalCityCode, departureDate},
                     null, null, "price ASC");
@@ -90,6 +90,7 @@ public class FlightsDetailsActivity extends AppCompatActivity {
                 String departureTime = TravelDatabaseHelper.convertMinutesToTimeString(departureTimeMinutes);
                 int price = cursor.getInt(1);
                 String flightNumber = cursor.getString(2);
+                String brand = cursor.getString(3);
                 FlightTicketUtils.FlightTicket ticket =
                         new FlightTicketUtils.FlightTicket(
                                 departureCityCode,
@@ -99,14 +100,15 @@ public class FlightsDetailsActivity extends AppCompatActivity {
                                 departureCalendar.getTime(),
                                 departureTime,
                                 price,
-                                flightNumber);
+                                flightNumber,
+                                brand);
                 Log.i("departureTime", departureTime);
                 Log.i("price", Integer.toString(price));
                 Log.i("flightNumber", flightNumber);
                 result.add(ticket);
             }
-            db.close();
             cursor.close();
+            db.close();
         } catch(SQLiteException e) {
             Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
             toast.show();

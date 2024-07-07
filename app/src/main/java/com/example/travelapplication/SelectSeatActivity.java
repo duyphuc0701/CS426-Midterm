@@ -182,9 +182,9 @@ public class SelectSeatActivity extends AppCompatActivity {
 
     private void initSeatListD() {
         seatListD = new ArrayList<>();
-        seatListD.add(new AirplaneSeat(1, 'D', R.drawable.booked_seat));
-        seatListD.add(new AirplaneSeat(2, 'D', R.drawable.avail_seat));
-        seatListD.add(new AirplaneSeat(3, 'D', R.drawable.booked_seat));
+        seatListD.add(new AirplaneSeat(1, 'D', R.drawable.avail_seat));
+        seatListD.add(new AirplaneSeat(2, 'D', R.drawable.booked_seat));
+        seatListD.add(new AirplaneSeat(3, 'D', R.drawable.avail_seat));
         seatListD.add(new AirplaneSeat(4, 'D', R.drawable.avail_seat));
         seatListD.add(new AirplaneSeat(5, 'D', R.drawable.avail_seat));
         seatListD.add(new AirplaneSeat(6, 'D', R.drawable.booked_seat));
@@ -226,8 +226,8 @@ public class SelectSeatActivity extends AppCompatActivity {
         seatListC = new ArrayList<>();
         seatListC.add(new AirplaneSeat(1, 'C', R.drawable.booked_seat));
         seatListC.add(new AirplaneSeat(2, 'C', R.drawable.avail_seat));
-        seatListC.add(new AirplaneSeat(3, 'C', R.drawable.booked_seat));
-        seatListC.add(new AirplaneSeat(4, 'C', R.drawable.avail_seat));
+        seatListC.add(new AirplaneSeat(3, 'C', R.drawable.avail_seat));
+        seatListC.add(new AirplaneSeat(4, 'C', R.drawable.booked_seat));
         seatListC.add(new AirplaneSeat(5, 'C', R.drawable.avail_seat));
         seatListC.add(new AirplaneSeat(6, 'C', R.drawable.booked_seat));
         seatListC.add(new AirplaneSeat(7, 'C', R.drawable.avail_seat));
@@ -268,11 +268,11 @@ public class SelectSeatActivity extends AppCompatActivity {
         seatListB = new ArrayList<>();
         seatListB.add(new AirplaneSeat(1, 'B', R.drawable.booked_seat));
         seatListB.add(new AirplaneSeat(2, 'B', R.drawable.avail_seat));
-        seatListB.add(new AirplaneSeat(3, 'B', R.drawable.booked_seat));
+        seatListB.add(new AirplaneSeat(3, 'B', R.drawable.avail_seat));
         seatListB.add(new AirplaneSeat(4, 'B', R.drawable.avail_seat));
         seatListB.add(new AirplaneSeat(5, 'B', R.drawable.avail_seat));
         seatListB.add(new AirplaneSeat(6, 'B', R.drawable.booked_seat));
-        seatListB.add(new AirplaneSeat(7, 'B', R.drawable.avail_seat));
+        seatListB.add(new AirplaneSeat(7, 'B', R.drawable.booked_seat));
     }
 
     private void initSeatRecyclerViewA() {
